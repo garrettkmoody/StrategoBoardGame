@@ -75,6 +75,7 @@ Here are the things to include in this document.
 
 | Program Begins |
     |
+    |
     V
 | Introduction Desplayed |
     |
@@ -88,14 +89,13 @@ Here are the things to include in this document.
 | Players Place Pieces |
     |
     V
-| Turn Starts | <----------------------------
-    |                                       |
-    V                                       |
-| Pieces Move/Attack |                      |
-    |                                       |
-    V                                       |
-< Is A Flag Captured? > no-> | Pieces Losing An Attack Removed |
-    yes
+| Turn Starts |
+    |
+    V
+| Pieces Move/Attack |
+    |
+    V
+< Is A Flag Captured? > 
     |
     V
 | Game Ends |
