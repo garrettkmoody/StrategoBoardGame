@@ -73,35 +73,16 @@ Here are the things to include in this document.
 
 * ___Procedural Flow Diagram___ The logical flow of your program
 
-| Program Begins |
-    |
-    |
-    V
-| Introduction Desplayed |
-    |
-    V
-| Press Any Button To Start |
-    |
-    V
-| Game initialized And Board Created |
-    |
-    V
-| Players Place Pieces |
-    |
-    V
-| Turn Starts |
-    |
-    V
-| Pieces Move/Attack |
-    |
-    V
-< Is A Flag Captured? > 
-    |
-    V
-| Game Ends |
-    |
-    V
-| Winner Announces |
+| Program Begins | -> 
+| Introduction Desplayed | -> 
+| Press Any Button To Start | -> 
+| Game initialized And Board Created | -> 
+| Players Place Pieces | ->
+| Turn Starts | ->
+| Pieces Move/Attack | ->
+< Is A Flag Captured? > if no, return to "Turn Starts", if yes, -> 
+| Game Ends | ->
+| Winner Announced |
 
 * ___Anticipated challenges___ and how will you address them?
     * Updating the board to display each side piece ranks, while obscuring their opponents
