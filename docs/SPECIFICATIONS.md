@@ -96,8 +96,8 @@ Here are the things to include in this document.
   * Name __individual group member tasks/responsibilities__.
     Split up the tasks and implementation into portions per group member.
   * Corey Bronson - Main() and Game()
-  * Andrew Platner - Piece() and its children
-  * Cadyn Maddocks - Board()
+  * Andrew Platner - Board()
+  * Cadyn Maddocks - Piece() and its children
   * Garrett Moody - Board()
   -
   * __Timeline__ of individual and group delivery dates.
