@@ -3,7 +3,7 @@
 The specifications outlines the project design specifications and project management.
 This is done BEFORE CODING!
 
-Here are the things to include in this codument.
+Here are the things to include in this document.
 
 * ___Complete UML diagrams___ of classes, member variables, member functions, and relationships between classes.
   What structures and menus will be required?  
