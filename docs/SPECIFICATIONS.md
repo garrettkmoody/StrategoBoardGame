@@ -72,8 +72,54 @@ Here are the things to include in this document.
 | - int movement = 0 | - int movement = 1 | - int movement = 10 | - int movement = 1 | - int movement = 1 | - int movement = 1 | - int movement = 1 | - int movement = 1 | - int movement = 1 | - int movement = 1 | - int movement = 1 | - int movement = 0 |
 
 * ___Procedural Flow Diagram___ The logical flow of your program
-* ___Anticipated challenges___ and how will you address them?  
+
+| Program Begins |
+    |
+    V
+| Introduction Desplayed |
+    |
+    V
+| Press Any Button To Start |
+    |
+    V
+| Game initialized And Board Created |
+    |
+    V
+| Players Place Pieces |
+    |
+    V
+| Turn Starts | <----------------------------
+    |                                       |
+    V                                       |
+| Pieces Move/Attack |                      |
+    |                                       |
+    V                                       |
+< Is A Flag Captured? > no-> | Pieces Losing An Attack Removed |
+    yes
+    |
+    V
+| Game Ends |
+    |
+    V
+| Winner Announces |
+
+* ___Anticipated challenges___ and how will you address them?
+    * Updating the board to display each side piece ranks, while obscuring their opponents
+        -Use of the print(red/blue) functions to print the correct board for each player
+    * Moving pieces
+        -Use of a 2d array to hold piece placement
+    * Action Validation
+        -Use of the validate functions to perform tests on each action before it is performed
+
 * ___Project Management Plan___
   * Name __individual group member tasks/responsibilities__.
     Split up the tasks and implementation into portions per group member.
+  * Corey Bronson - Main() and Game()
+  * Andrew Platner - Piece() and its children
+  * Cadyn Maddocks - Board()
+  * Garrett Moody - Board()
+  -
   * __Timeline__ of individual and group delivery dates.
+  * Week 7 - Function outlines and a runnable program, albeit one without functionality
+  * Week 8 - Fully operational functions, though not without bugs
+  * Week 9 - Bug fixes and polish
