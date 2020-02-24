@@ -5,6 +5,7 @@ private:
   int Piece[10][10];
 
 public:
+  // Make a note with your name next to functions you will work on
   bool validatePlacement();
 
   bool validateMovement();
