@@ -10,6 +10,7 @@ class Piece {
         char symbol;
         int rank;
         int movement;
+        bool side;
     public:
         int getX() {return x;}
         void setX(int x) {this -> x = x;}
