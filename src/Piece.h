@@ -20,5 +20,7 @@ class Piece {
         char getSymbol() {return symbol;}
         int getRank() {return rank;}
         int getMovement() {return movement;}
+        bool getSide() {return side;}
+        void setSide(bool side) {this -> side = side;}
 };
 #endif
