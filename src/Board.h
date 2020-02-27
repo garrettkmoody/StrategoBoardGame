@@ -20,6 +20,8 @@ public:
   void move();
 
   void place();
+
+  Piece select(int x, int y);
 };
 
 #endif
