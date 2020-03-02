@@ -25,14 +25,20 @@ bool Board::validatePlacement() {
     } else { return true;}
 }
 
+Piece Board::selectPiece(int x, int y) {
+	Piece piece = Piece[x][y];
+	return piece;
+}
+
 void Board::move() {
     char move;
-    std::cin >> move;
+	Piece piece = selectPiece();
+    cin >> move;
     switch(move) {
-        case 'w': {Piece.getX(); Piece.getY() + 1;} break;
-        case 'a': {Piece.getX() - 1; Piece.getY();} break;
-        case 'd': {Piece.getX() + 1; Piece.getY();} break;
-        case 's': {Piece.getX(); Piece.getY() - 1;} break;
+        case 'w': {piece.getX(); piece.getY() + 1;} break;
+        case 'a': {piece.getX() - 1; piece.getY();} break;
+        case 'd': {piece.getX() + 1; piece.getY();} break;
+        case 's': {piece.getX(); piece.getY() - 1;} break;
     }
     return;
 }

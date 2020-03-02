@@ -10,6 +10,7 @@ class Piece {
         char symbol;
         int rank;
         int movement;
+        bool side;
     public:
         int getX() {return x;}
         void setX(int x) {this -> x = x;}
@@ -19,5 +20,7 @@ class Piece {
         char getSymbol() {return symbol;}
         int getRank() {return rank;}
         int getMovement() {return movement;}
+        bool getSide() {return side;}
+        void setSide(bool side) {this -> side = side;}
 };
 #endif

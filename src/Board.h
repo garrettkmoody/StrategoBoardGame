@@ -6,6 +6,8 @@ class Board {
 private:
   Piece* Piece[10][10];
 
+  
+
 public:
   // Make a note with your name next to functions you will work on
   Board() {
@@ -15,6 +17,8 @@ public:
       }
     }
   }
+
+  Piece selectPiece(int x, int y);
 
   bool validatePlacement();
 
