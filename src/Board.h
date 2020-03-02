@@ -1,9 +1,10 @@
 #ifndef BOARD_H
 #define BOARD_H
+#include "Piece.h"
 
 class Board {
 private:
-  char Piece[10][10];
+  Piece* Piece[10][10];
 
 public:
   // Make a note with your name next to functions you will work on
