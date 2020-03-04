@@ -1,8 +1,6 @@
 #ifndef BOARD_H
 #define BOARD_H
 #include "Piece.h"
-#include "Nopiece.h"
-#include "General.h"
 
 class Board {
 private:
