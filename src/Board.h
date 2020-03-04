@@ -3,7 +3,6 @@
 #include "Piece.h"
 #include <iostream>
 
-using namespace std;
 
 class Board {
 private:
