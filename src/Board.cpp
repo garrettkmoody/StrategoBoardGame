@@ -1,4 +1,7 @@
 #include "Board.h"
+#include "Game.h"
+#include <iostream>
+using namespace std;
 
 void Board::printBoard() {
   cout << endl << "        || RED ||\n";
