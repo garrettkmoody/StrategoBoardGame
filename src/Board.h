@@ -20,11 +20,11 @@ public:
     }
   }
 
-  Piece selectPiece(int x, int y);
+  Piece* selectPiece(int x, int y);
 
-  bool validatePlacement();
+  bool validatePlacement(int x, int y);
 
-  bool validateMovement();
+  bool validateMovement(int x, int y);
 
   void printBoard();
 
@@ -32,7 +32,7 @@ public:
 
   void printRed();
 
-  void move();
+  void move(Piece* piece, int x, int y);
 
   void place();
 

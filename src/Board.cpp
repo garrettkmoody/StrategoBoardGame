@@ -17,29 +17,36 @@ void Board::printBoard() {
   cout << "       || BLUE ||\n" << endl;
 }
 
- bool Board::validateMovement() {
-    if()
+ bool Board::validateMovement(int x, int y) {
+    if(x < 0 || y < 0 || x > 9 || y > 9) {
+        return false;
+    } else { return true;}
 }
 
-bool Board::validatePlacement() {
+bool Board::validatePlacement(int x, int y) {
     if(x < 0 || y < 0 || x > 9 || y > 9) {
         return false;
     } else { return true;}
 }
 //FROM GARRETT: I changed the name of the array to "Pieces" instead of "Piece"
-Piece Board::selectPiece(int x, int y) {
-        Piece piece = Piece[x][y];
+Piece* Board::selectPiece(int x, int y) {
+        Piece* piece;
+        if(validateMovement(x,y)) {
+            piece = Pieces[x][y];
+        } else {
+            piece = new Nopiece;
+        }
         return piece;
 }
 
-void Board::move() {
+void Board::move(Piece* piece, int x, int y) {
+
     char move;
-        Piece piece = selectPiece();
     cin >> move;
     switch(move) {
-        case 'w': {piece.getX(); piece.getY() + 1;} break;
-        case 'a': {piece.getX() - 1; piece.getY();} break;
-        case 'd': {piece.getX() + 1; piece.getY();} break;
+        case 'w': {y++;} break;
+        case 'a': {x--;} break;
+        case 'd': {x++;} break;
         case 's': {piece.getX(); piece.getY() - 1;} break;
     }
     return;
