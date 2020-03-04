@@ -1,7 +1,4 @@
 #include "Board.h"
-#include <iostream>
-
-using namespace std;
 
 void Board::printBoard() {
   cout << endl << "        || RED ||\n";
@@ -47,7 +44,7 @@ void Board::move(Piece* piece, int x, int y) {
         case 'w': {y++;} break;
         case 'a': {x--;} break;
         case 'd': {x++;} break;
-        case 's': {piece.getX(); piece.getY() - 1;} break;
+        case 's': {y--;} break;
     }
     return;
 }
