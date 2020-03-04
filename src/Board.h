@@ -1,10 +1,12 @@
 #ifndef BOARD_H
 #define BOARD_H
 #include "Piece.h"
+#include "Nopiece.h"
+#include "General.h"
 
 class Board {
 private:
-  Piece* Piece[10][10];
+  Piece* Pieces[10][10];
 
   
 
@@ -13,7 +15,7 @@ public:
   Board() {
     for (int i = 0; i < 10; i++) {
       for (int j = 0; j < 10; j++) {
-        Piece[i][j] = '?';
+        Pieces[i][j] = new Nopiece();
       }
     }
   }

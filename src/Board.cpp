@@ -4,18 +4,20 @@
 using namespace std;
 
 void Board::printBoard() {
-  cout << endl << "            || RED ||\n";
+  cout << endl << "        || RED ||\n";
+  cout << "========================\n";
   for (int i = 0; i < 10; i++) {
-    cout << "  ";
+    cout << "| ";
     for (int j = 0; j < 10; j++) {
-      cout << "[" << Piece[i][j].getSymbol() << "]";
+      cout << "[" << Pieces[i][j]->getSymbol() << "]";
     }
-    cout << endl;
+    cout << " |" << endl;
   }
-  cout << "            || BLUE ||\n" << endl;
+  cout << "========================\n";
+  cout << "       || BLUE ||\n" << endl;
 }
 
-bool Board::validateMovement() {
+ bool Board::validateMovement() {
     if()
 }
 
@@ -24,15 +26,15 @@ bool Board::validatePlacement() {
         return false;
     } else { return true;}
 }
-
+//FROM GARRETT: I changed the name of the array to "Pieces" instead of "Piece"
 Piece Board::selectPiece(int x, int y) {
-	Piece piece = Piece[x][y];
-	return piece;
+        Piece piece = Piece[x][y];
+        return piece;
 }
 
 void Board::move() {
     char move;
-	Piece piece = selectPiece();
+        Piece piece = selectPiece();
     cin >> move;
     switch(move) {
         case 'w': {piece.getX(); piece.getY() + 1;} break;
@@ -43,4 +45,4 @@ void Board::move() {
     return;
 }
 
-  void Board::place() {}
+  void Board::place() {} 
