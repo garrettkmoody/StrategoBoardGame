@@ -9,6 +9,7 @@ void Game::initialize() {
   bool check1;
 
   for (int i = 40; i > 0; i--) {
+      playerTurn = true;
     vector<int> piecesRemainingB = {6, 1, 1, 2, 3, 4, 4, 4, 5, 8, 1, 1};
     board.printBlue();
     cout << endl << "\tLeft to place: " << endl;
@@ -30,6 +31,7 @@ void Game::initialize() {
       check1 = choosePiece(piecesRemainingB);
     }
     cout << "\033[2J\033[1;1H";
+    playerTurn = false;
     vector<int> piecesRemainingR = {6, 1, 1, 2, 3, 4, 4, 4, 5, 8, 1, 1};
     board.printRed();
     cout << endl << "\tLeft to place: " << endl;
@@ -126,11 +128,11 @@ cout << "x: ";
 cin >> x;
 cout << "y: ";
 cin >> y;
-if(board.validatePlacement(x,y)) {
+if(board.validatePlacement(x,y, playerTurn)) {
     board.place(piece);
 } else {
     cout << "Invalid Location, please try again." << endl;
 }
-} while (!board.validatePlacement(x,y));
+} while (!board.validatePlacement(x,y, playerTurn));
 }
 void Game::run() {}
