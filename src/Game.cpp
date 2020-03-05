@@ -9,48 +9,45 @@ void Game::initialize() {
   bool check1;
 
   for (int i = 40; i > 0; i--) {
-    if (playerTurn == 1) {
-      vector<int> piecesRemainingB = {6, 1, 1, 2, 3, 4, 4, 4, 5, 8, 1, 1};
-      board.printBlue();
-      cout << endl << "\tLeft to place: " << endl;
-      cout << "Bomb: " << piecesRemainingB.at(0)
-           << "\tMarshall: " << piecesRemainingB.at(1)
-           << "\tGeneral: " << piecesRemainingB.at(2) << endl;
-      cout << "Colonel: " << piecesRemainingB.at(3)
-           << "\tMajor: " << piecesRemainingB.at(4)
-           << "\tCaptain: " << piecesRemainingB.at(5) << endl;
-      cout << "Lieutenant: " << piecesRemainingB.at(6)
-           << "\tSergeant: " << piecesRemainingB.at(7)
-           << "\tMiner: " << piecesRemainingB.at(8) << endl;
-      cout << "Scout: " << piecesRemainingB.at(9)
-           << "\tSpy: " << piecesRemainingB.at(10)
-           << "\tFlag: " << piecesRemainingB.at(11) << endl;
+    vector<int> piecesRemainingB = {6, 1, 1, 2, 3, 4, 4, 4, 5, 8, 1, 1};
+    board.printBlue();
+    cout << endl << "\tLeft to place: " << endl;
+    cout << "Bomb: " << piecesRemainingB.at(0)
+         << "\tMarshall: " << piecesRemainingB.at(1)
+         << "\tGeneral: " << piecesRemainingB.at(2) << endl;
+    cout << "Colonel: " << piecesRemainingB.at(3)
+         << "\tMajor: " << piecesRemainingB.at(4)
+         << "\tCaptain: " << piecesRemainingB.at(5) << endl;
+    cout << "Lieutenant: " << piecesRemainingB.at(6)
+         << "\tSergeant: " << piecesRemainingB.at(7)
+         << "\tMiner: " << piecesRemainingB.at(8) << endl;
+    cout << "Scout: " << piecesRemainingB.at(9)
+         << "\tSpy: " << piecesRemainingB.at(10)
+         << "\tFlag: " << piecesRemainingB.at(11) << endl;
 
-      check1 = true;
-      while (check1) {
-        check1 = choosePiece(piecesRemainingB);
-      }
-    } else {
-      vector<int> piecesRemainingR = {6, 1, 1, 2, 3, 4, 4, 4, 5, 8, 1, 1};
-      board.printRed();
-      cout << endl << "\tLeft to place: " << endl;
-      cout << "Bomb: " << piecesRemainingR.at(0)
-           << "\tMarshall: " << piecesRemainingR.at(1)
-           << "\tGeneral: " << piecesRemainingR.at(2) << endl;
-      cout << "Colonel: " << piecesRemainingR.at(3)
-           << "\tMajor: " << piecesRemainingR.at(4)
-           << "\tCaptain: " << piecesRemainingR.at(5) << endl;
-      cout << "Lieutenant: " << piecesRemainingR.at(6)
-           << "\tSergeant: " << piecesRemainingR.at(7)
-           << "\tMiner: " << piecesRemainingR.at(8) << endl;
-      cout << "Scout: " << piecesRemainingR.at(9)
-           << "\tSpy: " << piecesRemainingR.at(10)
-           << "\tFlag: " << piecesRemainingR.at(11) << endl;
+    check1 = true;
+    while (check1) {
+      check1 = choosePiece(piecesRemainingB);
+    }
+    vector<int> piecesRemainingR = {6, 1, 1, 2, 3, 4, 4, 4, 5, 8, 1, 1};
+    board.printRed();
+    cout << endl << "\tLeft to place: " << endl;
+    cout << "Bomb: " << piecesRemainingR.at(0)
+         << "\tMarshall: " << piecesRemainingR.at(1)
+         << "\tGeneral: " << piecesRemainingR.at(2) << endl;
+    cout << "Colonel: " << piecesRemainingR.at(3)
+         << "\tMajor: " << piecesRemainingR.at(4)
+         << "\tCaptain: " << piecesRemainingR.at(5) << endl;
+    cout << "Lieutenant: " << piecesRemainingR.at(6)
+         << "\tSergeant: " << piecesRemainingR.at(7)
+         << "\tMiner: " << piecesRemainingR.at(8) << endl;
+    cout << "Scout: " << piecesRemainingR.at(9)
+         << "\tSpy: " << piecesRemainingR.at(10)
+         << "\tFlag: " << piecesRemainingR.at(11) << endl;
 
-      check1 = true;
-      while (check1) {
-        check1 = choosePiece(piecesRemainingR);
-      }
+    check1 = true;
+    while (check1) {
+      check1 = choosePiece(piecesRemainingR);
     }
   }
 }
@@ -104,6 +101,10 @@ bool Game::choosePiece(vector<int> piecesRemaining) {
 }
 
 void Game::selectLocation() {
-  // I'm gonna stop here for now feel free to continue or adjust my work at your leasure- CM
+  // I'm gonna stop here for now feel free to continue or adjust my work at your
+  // leasure- CM
+  // place needs to be worked on
+  // wondering if I should declare a temporary instance that will get assigned
+  // to the array later, which I think would reduce the number of if else ifs.
 }
 void Game::run() {}
