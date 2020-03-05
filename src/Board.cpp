@@ -39,7 +39,7 @@ Piece* Board::selectPiece(int x, int y) {
 }
 
 void Board::move(Piece* piece, int x, int y) {
-
+// doesn't look like x or y is passed by reference and since you don't set x or y of piece how does this affect the piece's location.
     char move;
     cin >> move;
     switch(move) {
