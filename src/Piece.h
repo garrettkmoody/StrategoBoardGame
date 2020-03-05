@@ -114,4 +114,11 @@ class Sergeant : public Piece{
         int rank = 4;
         int movement =1;
 };
+class Spy : public Piece{
+    protected:
+        std::string name = "Spy";
+        char symbol = 'S';
+        int rank = 1;
+        int movement =1;
+};
 #endif

@@ -51,4 +51,4 @@ void Board::move(Piece* piece, int x, int y) {
     return;
 }
 
-  void Board::place() {} 
+  void Board::place(Piece* piece) {} 

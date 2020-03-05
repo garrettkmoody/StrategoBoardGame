@@ -34,7 +34,7 @@ public:
 
   void move(Piece* piece, int x, int y);
 
-  void place();
+  void place(Piece* piece);
 
   Piece select(int x, int y);
 };

@@ -29,6 +29,7 @@ void Game::initialize() {
     while (check1) {
       check1 = choosePiece(piecesRemainingB);
     }
+    cout << "\033[2J\033[1;1H";
     vector<int> piecesRemainingR = {6, 1, 1, 2, 3, 4, 4, 4, 5, 8, 1, 1};
     board.printRed();
     cout << endl << "\tLeft to place: " << endl;
@@ -50,45 +51,58 @@ void Game::initialize() {
       check1 = choosePiece(piecesRemainingR);
     }
   }
+  cout << "\033[2J\033[1;1H"; // this is clear line  format: \escape[command\escape[command;
 }
 bool Game::choosePiece(vector<int> piecesRemaining) {
   cout << "Enter the name of the string you would like to select: ";
   string tempName;
   cin >> tempName;
   if (tempName == "Bomb" || piecesRemaining.at(0) > 0) {
+    Bomb* bomb;
     selectLocation();
     return false;
   } else if (tempName == "Marshall" || piecesRemaining.at(1) > 0) {
+    Marshall* Marshall;
     selectLocation();
     return false;
   } else if (tempName == "General" || piecesRemaining.at(2) > 0) {
+    General* General;
     selectLocation();
     return false;
   } else if (tempName == "Colonel" || piecesRemaining.at(3) > 0) {
+    Colonel* Colonel;
     selectLocation();
     return false;
   } else if (tempName == "Major" || piecesRemaining.at(4) > 0) {
+    Major* Major;
     selectLocation();
     return false;
   } else if (tempName == "Captain" || piecesRemaining.at(5) > 0) {
+    Captain* Captain;
     selectLocation();
     return false;
   } else if (tempName == "Lieutenant" || piecesRemaining.at(6) > 0) {
+    Lieutenant* Lieutenant;
     selectLocation();
     return false;
   } else if (tempName == "Sergeant" || piecesRemaining.at(7) > 0) {
+    Sergeant* Sergeant;
     selectLocation();
     return false;
   } else if (tempName == "Miner" || piecesRemaining.at(8) > 0) {
+    Miner* Miner;
     selectLocation();
     return false;
   } else if (tempName == "Scout" || piecesRemaining.at(9) > 0) {
+    Scout* Scout;
     selectLocation();
     return false;
   } else if (tempName == "Spy" || piecesRemaining.at(10) > 0) {
+    Spy* Spy;
     selectLocation();
     return false;
   } else if (tempName == "Flag" || piecesRemaining.at(11) > 0) {
+    Flag* Flag;
     selectLocation();
     return false;
   } else {
