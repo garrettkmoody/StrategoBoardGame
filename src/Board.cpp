@@ -17,7 +17,7 @@ void Board::printBoard() {
 }
 
  bool Board::validateMovement(int x, int y) {
-    if(x < 0 || y < 0 || x > 9 || y > 9) {
+    if(x < 0 || y < 0 || x > 9 || y > 9 || Pieces[x][y] -> getname() != "River") {
         return false;
     } else { return true;}
 }
