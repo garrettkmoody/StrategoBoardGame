@@ -10,6 +10,7 @@ public:
   void run();
   bool choosePiece(std::vector<int>);
   void selectLocation();
+  bool getTurn();
 
 private:
   bool playerTurn = true;

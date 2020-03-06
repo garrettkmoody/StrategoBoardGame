@@ -53,6 +53,7 @@ void Game::initialize() {
   }
   cout << "\033[2J\033[1;1H"; // this is clear line  format: \escape[command\escape[command;
 }
+
 bool Game::choosePiece(vector<int> piecesRemaining) {
   cout << "Enter the name of the string you would like to select: ";
   string tempName;
@@ -120,5 +121,11 @@ void Game::selectLocation() {
   // place needs to be worked on
   // wondering if I should declare a temporary instance that will get assigned
   // to the array later, which I think would reduce the number of if else ifs.
+  cout << "Enter in the x and y coordinates where you want to place your piece: ";
+
 }
 void Game::run() {}
+
+bool Game::getTurn() {
+    return playerTurn;
+}

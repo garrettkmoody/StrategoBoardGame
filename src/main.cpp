@@ -10,6 +10,7 @@
  */
 
  #include <iostream>
+ #include "Game.h"
 
  using namespace std;
 
@@ -17,9 +18,22 @@
 
 int main() {
 
+    Game game;
+
     intro();
 
-    // next need to use game class
+    game.initialize();
+
+    game.run();
+
+    cout << "Congratulations, ";
+    if ( game.getTurn() == true ) {
+        cout << "Player One ";
+    } else {
+        cout << "Player Two ";
+    }
+    cout << "has won the game!" << endl;
+
 
     return 0;
 
