@@ -22,7 +22,7 @@ public:
 
   Piece* selectPiece(int x, int y);
 
-  bool validatePlacement(int x, int y);
+  bool validatePlacement(int x, int y, bool playerTurn);
 
   bool validateMovement(int x, int y);
 

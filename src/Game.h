@@ -9,8 +9,7 @@ public:
   void initialize();
   void run();
   bool choosePiece(std::vector<int>);
-  void selectLocation();
-  bool getTurn();
+  void selectLocation(Piece*);
 
 private:
   bool playerTurn = true;

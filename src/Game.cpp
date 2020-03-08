@@ -9,6 +9,7 @@ void Game::initialize() {
   bool check1;
 
   for (int i = 40; i > 0; i--) {
+      playerTurn = true;
     vector<int> piecesRemainingB = {6, 1, 1, 2, 3, 4, 4, 4, 5, 8, 1, 1};
     board.printBlue();
     cout << endl << "\tLeft to place: " << endl;
@@ -30,6 +31,7 @@ void Game::initialize() {
       check1 = choosePiece(piecesRemainingB);
     }
     cout << "\033[2J\033[1;1H";
+    playerTurn = false;
     vector<int> piecesRemainingR = {6, 1, 1, 2, 3, 4, 4, 4, 5, 8, 1, 1};
     board.printRed();
     cout << endl << "\tLeft to place: " << endl;
@@ -52,6 +54,7 @@ void Game::initialize() {
     }
   }
   cout << "\033[2J\033[1;1H"; // this is clear line  format: \escape[command\escape[command;
+  run();
 }
 
 bool Game::choosePiece(vector<int> piecesRemaining) {
@@ -59,52 +62,52 @@ bool Game::choosePiece(vector<int> piecesRemaining) {
   string tempName;
   cin >> tempName;
   if (tempName == "Bomb" || piecesRemaining.at(0) > 0) {
-    Bomb* bomb;
-    selectLocation();
+    Bomb* Bomb;
+    selectLocation(Bomb);
     return false;
   } else if (tempName == "Marshall" || piecesRemaining.at(1) > 0) {
     Marshall* Marshall;
-    selectLocation();
+    selectLocation(Marshall);
     return false;
   } else if (tempName == "General" || piecesRemaining.at(2) > 0) {
     General* General;
-    selectLocation();
+    selectLocation(General);
     return false;
   } else if (tempName == "Colonel" || piecesRemaining.at(3) > 0) {
     Colonel* Colonel;
-    selectLocation();
+    selectLocation(Colonel);
     return false;
   } else if (tempName == "Major" || piecesRemaining.at(4) > 0) {
     Major* Major;
-    selectLocation();
+    selectLocation(Major);
     return false;
   } else if (tempName == "Captain" || piecesRemaining.at(5) > 0) {
     Captain* Captain;
-    selectLocation();
+    selectLocation(Captain);
     return false;
   } else if (tempName == "Lieutenant" || piecesRemaining.at(6) > 0) {
     Lieutenant* Lieutenant;
-    selectLocation();
+    selectLocation(Lieutenant);
     return false;
   } else if (tempName == "Sergeant" || piecesRemaining.at(7) > 0) {
     Sergeant* Sergeant;
-    selectLocation();
+    selectLocation(Sergeant);
     return false;
   } else if (tempName == "Miner" || piecesRemaining.at(8) > 0) {
     Miner* Miner;
-    selectLocation();
+    selectLocation(Miner);
     return false;
   } else if (tempName == "Scout" || piecesRemaining.at(9) > 0) {
     Scout* Scout;
-    selectLocation();
+    selectLocation(Scout);
     return false;
   } else if (tempName == "Spy" || piecesRemaining.at(10) > 0) {
     Spy* Spy;
-    selectLocation();
+    selectLocation(Spy);
     return false;
   } else if (tempName == "Flag" || piecesRemaining.at(11) > 0) {
     Flag* Flag;
-    selectLocation();
+    selectLocation(Flag);
     return false;
   } else {
     cout << "You have either entered an invalid piece or there are none of "
@@ -115,14 +118,23 @@ bool Game::choosePiece(vector<int> piecesRemaining) {
   }
 }
 
-void Game::selectLocation() {
+void Game::selectLocation(Piece* piece) {
   // I'm gonna stop here for now feel free to continue or adjust my work at your
   // leasure- CM
   // place needs to be worked on
-  // wondering if I should declare a temporary instance that will get assigned
-  // to the array later, which I think would reduce the number of if else ifs.
-  cout << "Enter in the x and y coordinates where you want to place your piece: ";
-
+int x,y;
+do {
+cout << "Select the location you would like to place your piece: " << endl;
+cout << "x: ";
+cin >> x;
+cout << "y: ";
+cin >> y;
+if(board.validatePlacement(x,y, playerTurn)) {
+    board.place(piece);
+} else {
+    cout << "Invalid Location, please try again." << endl;
+}
+} while (!board.validatePlacement(x,y, playerTurn));
 }
 void Game::run() {}
 

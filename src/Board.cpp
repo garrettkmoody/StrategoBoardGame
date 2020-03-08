@@ -16,39 +16,62 @@ void Board::printBoard() {
   cout << "       || BLUE ||\n" << endl;
 }
 
- bool Board::validateMovement(int x, int y) {
-    if(x < 0 || y < 0 || x > 9 || y > 9) {
-        return false;
-    } else { return true;}
+bool Board::validateMovement(int x, int y) {
+  if (x < 0 || y < 0 || x > 9 || y > 9 || Pieces[x][y]->getname() != "River") {
+    return false;
+  } else {
+    return true;
+  }
 }
 
-bool Board::validatePlacement(int x, int y) {
-    if(x < 0 || y < 0 || x > 9 || y > 9 || Pieces[x][y] -> getname() != "River") {
-        return false;
-    } else { return true;}
-}
-//FROM GARRETT: I changed the name of the array to "Pieces" instead of "Piece"
-Piece* Board::selectPiece(int x, int y) {
-        Piece* piece;
-        if(validateMovement(x,y)) {
-            piece = Pieces[x][y];
-        } else {
-            piece = new Nopiece;
-        }
-        return piece;
-}
-
-void Board::move(Piece* piece, int x, int y) {
-// doesn't look like x or y is passed by reference and since you don't set x or y of piece how does this affect the piece's location.
-    char move;
-    cin >> move;
-    switch(move) {
-        case 'w': {y++;} break;
-        case 'a': {x--;} break;
-        case 'd': {x++;} break;
-        case 's': {y--;} break;
+bool Board::validatePlacement(int x, int y, bool playerTurn) {
+  if (playerTurn) { // blue
+    if (x < 0 || y < 0 || x > 9 || y > 9 ||
+        Pieces[x][y]->getname() != "River") {
+      return false;
+    } else {
+      return true;
     }
-    return;
+  } else { // red
+    if (x < 0 || y < 0 || x > 9 || y > 9 ||
+        Pieces[x][y]->getname() != "River") {
+      return false;
+    } else {
+      return true;
+    }
+  }
+}
+// FROM GARRETT: I changed the name of the array to "Pieces" instead of "Piece"
+Piece *Board::selectPiece(int x, int y) {
+  Piece *piece;
+  if (validateMovement(x, y)) {
+    piece = Pieces[x][y];
+  } else {
+    piece = new Nopiece;
+  }
+  return piece;
 }
 
-  void Board::place(Piece* piece) {} 
+void Board::move(Piece *piece, int x, int y) {
+  // doesn't look like x or y is passed by reference and since you don't set x
+  // or y of piece how does this affect the piece's location.
+  char move;
+  cin >> move;
+  switch (move) {
+  case 'w': {
+    y++;
+  } break;
+  case 'a': {
+    x--;
+  } break;
+  case 'd': {
+    x++;
+  } break;
+  case 's': {
+    y--;
+  } break;
+  }
+  return;
+}
+
+void Board::place(Piece *piece) {}
