@@ -8,7 +8,7 @@ class Game {
 public:
   void initialize();
   void run();
-  bool choosePiece(std::vector<int>);
+  bool choosePiece(std::vector<int>&);
   void selectLocation(Piece*);
   bool getTurn();
 private:
