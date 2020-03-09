@@ -33,18 +33,18 @@ bool Board::validateMovement(int x, int y) {
 // mind. Blue seems to work ok, but red needs work -CM
 bool Board::validatePlacement(int x, int y, bool playerTurn) {
   if (playerTurn) { // blue
-    if (x < 0 || y < 5 || x > 9 || y > 9 ||
-        Pieces[y][x]->getname() == "River") {
-      return false;
-    } else {
+    if (x >= 0 || y >= 6 || x <= 9 || y <= 9 ||
+        Pieces[y][x]->getname() != "River") {
       return true;
+    } else {
+      return false;
     }
   } else { // red
-    if (x < 0 || y < 0 || x > 9 || y > 3 ||
+    if (x >= 0 || y >= 0 || x <= 9 || y <= 3 ||
         Pieces[y][x]->getname() != "River") {
-      return false;
-    } else {
       return true;
+    } else {
+      return false;
     }
   }
 }
