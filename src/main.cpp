@@ -21,11 +21,6 @@ int main() {
     Game game;
 
     intro();
-<<<<<<< HEAD
-    Game Game;
-    Game.initialize();
-    // next need to use game class
-=======
 
     game.initialize();
 
@@ -39,7 +34,6 @@ int main() {
     }
     cout << "has won the game!" << endl;
 
->>>>>>> 07832037cc867a8ec081b793b8c8ab8763093f01
 
     return 0;
 

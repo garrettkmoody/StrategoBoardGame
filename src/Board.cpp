@@ -17,15 +17,11 @@ void Board::printBoard() {
   cout << "========================\n";
   cout << "       || BLUE ||\n" << endl;
 }
-void Board::printBlue() {
-
-}
-void Board::printRed() {
-
-}
+void Board::printBlue() {}
+void Board::printRed() {}
 
 // note that validateMovement needs to consider the movement abilities of the
-// piece in question
+// piece in question.
 bool Board::validateMovement(int x, int y) {
   if (x < 0 || y < 0 || x > 9 || y > 9 || Pieces[y][x]->getname() != "River") {
     return false;
@@ -33,8 +29,8 @@ bool Board::validateMovement(int x, int y) {
     return true;
   }
 }
-// Garrett seems to be making the board with (0,0) in the top left
-// This needs some work. Good news though the program runs! -CM
+// Garrett seems to be making the board with (0,0) in the top left keep that in
+// mind. Blue seems to work ok, but red needs work -CM
 bool Board::validatePlacement(int x, int y, bool playerTurn) {
   if (playerTurn) { // blue
     if (x < 0 || y < 5 || x > 9 || y > 9 ||
@@ -62,10 +58,13 @@ Piece *Board::selectPiece(int x, int y) {
   }
   return piece;
 }
-
+// doesn't look like x or y is passed by reference and since you don't set x
+// or y of piece how does this affect the piece's location.
+// Also, you need to consider things like the scout's movement ability, which
+// lets you select the distance you want to move in a particular direction. When
+// you do move in that direction you need to do a for loop and "move" it through
+// every space to make sure there isn't anything in the way.
 void Board::move(Piece *piece, int x, int y) {
-  // doesn't look like x or y is passed by reference and since you don't set x
-  // or y of piece how does this affect the piece's location.
   char move;
   cin >> move;
   switch (move) {
@@ -84,7 +83,7 @@ void Board::move(Piece *piece, int x, int y) {
   }
   return;
 }
-// Problem seems to be here, besides that Game is working as intended.
+//Fixed.
 void Board::place(Piece *piece) {
   Pieces[piece->getY()][piece->getX()] = piece;
 }

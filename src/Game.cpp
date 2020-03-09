@@ -63,53 +63,54 @@ bool Game::choosePiece(vector<int> piecesRemaining) {
   cout << "Enter the name of the string you would like to select: ";
   string tempName;
   cin >> tempName;
+  Piece* piece;
   if (tempName == "Bomb" || piecesRemaining.at(0) > 0) {
-    Bomb* Bomb;
-    selectLocation(Bomb);
+    piece = new Bomb;
+    selectLocation(piece);
     return false;
   } else if (tempName == "Marshall" || piecesRemaining.at(1) > 0) {
-    Marshall* Marshall;
-    selectLocation(Marshall);
+    piece = new Marshall;
+    selectLocation(piece);
     return false;
   } else if (tempName == "General" || piecesRemaining.at(2) > 0) {
-    General* General;
-    selectLocation(General);
+    piece = new General;
+    selectLocation(piece);
     return false;
   } else if (tempName == "Colonel" || piecesRemaining.at(3) > 0) {
-    Colonel* Colonel;
-    selectLocation(Colonel);
+    piece = new Colonel;
+    selectLocation(piece);
     return false;
   } else if (tempName == "Major" || piecesRemaining.at(4) > 0) {
-    Major* Major;
-    selectLocation(Major);
+    piece = new Major;
+    selectLocation(piece);
     return false;
   } else if (tempName == "Captain" || piecesRemaining.at(5) > 0) {
-    Captain* Captain;
-    selectLocation(Captain);
+    piece = new Captain;
+    selectLocation(piece);
     return false;
   } else if (tempName == "Lieutenant" || piecesRemaining.at(6) > 0) {
-    Lieutenant* Lieutenant;
-    selectLocation(Lieutenant);
+    piece = new Lieutenant;
+    selectLocation(piece);
     return false;
   } else if (tempName == "Sergeant" || piecesRemaining.at(7) > 0) {
-    Sergeant* Sergeant;
-    selectLocation(Sergeant);
+    piece = new Sergeant;
+    selectLocation(piece);
     return false;
   } else if (tempName == "Miner" || piecesRemaining.at(8) > 0) {
-    Miner* Miner;
-    selectLocation(Miner);
+    piece = new Miner;
+    selectLocation(piece);
     return false;
   } else if (tempName == "Scout" || piecesRemaining.at(9) > 0) {
-    Scout* Scout;
-    selectLocation(Scout);
+    piece = new Scout;
+    selectLocation(piece);
     return false;
   } else if (tempName == "Spy" || piecesRemaining.at(10) > 0) {
-    Spy* Spy;
-    selectLocation(Spy);
+    piece = new Spy;
+    selectLocation(piece);
     return false;
   } else if (tempName == "Flag" || piecesRemaining.at(11) > 0) {
-    Flag* Flag;
-    selectLocation(Flag);
+    piece = new Flag;
+    selectLocation(piece);
     return false;
   } else {
     cout << "You have either entered an invalid piece or there are none of "
@@ -121,9 +122,6 @@ bool Game::choosePiece(vector<int> piecesRemaining) {
 }
 
 void Game::selectLocation(Piece* piece) {
-  // I'm gonna stop here for now feel free to continue or adjust my work at your
-  // leasure- CM
-  // place needs to be worked on
 int x,y;
 do {
 cout << "Select the location you would like to place your piece: " << endl;
