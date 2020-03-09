@@ -11,7 +11,8 @@ void Game::initialize() {
   for (int i = 40; i > 0; i--) {
       playerTurn = true;
     vector<int> piecesRemainingB = {6, 1, 1, 2, 3, 4, 4, 4, 5, 8, 1, 1};
-    board.printBlue();
+    //board.printBlue();
+    board.printBoard();
     cout << endl << "\tLeft to place: " << endl;
     cout << "Bomb: " << piecesRemainingB.at(0)
          << "\tMarshall: " << piecesRemainingB.at(1)
@@ -33,7 +34,8 @@ void Game::initialize() {
     cout << "\033[2J\033[1;1H";
     playerTurn = false;
     vector<int> piecesRemainingR = {6, 1, 1, 2, 3, 4, 4, 4, 5, 8, 1, 1};
-    board.printRed();
+    //board.printRed();
+    board.printBoard();
     cout << endl << "\tLeft to place: " << endl;
     cout << "Bomb: " << piecesRemainingR.at(0)
          << "\tMarshall: " << piecesRemainingR.at(1)
@@ -129,6 +131,8 @@ cin >> x;
 cout << "y: ";
 cin >> y;
 if(board.validatePlacement(x,y, playerTurn)) {
+    piece->setX(x);
+    piece->setY(y);
     board.place(piece);
 } else {
     cout << "Invalid Location, please try again." << endl;

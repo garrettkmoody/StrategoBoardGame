@@ -8,17 +8,18 @@
  * Date:            ?
  *
  */
-
+//g++ main.cpp Game.cpp Board.cpp && ./a.out
  #include <iostream>
 
  using namespace std;
-
+#include "Game.h"
  void intro();
 
 int main() {
 
     intro();
-
+    Game Game;
+    Game.initialize();
     // next need to use game class
 
     return 0;
