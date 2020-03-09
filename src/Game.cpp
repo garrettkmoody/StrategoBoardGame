@@ -58,6 +58,7 @@ void Game::initialize() {
   cout << "\033[2J\033[1;1H"; // this is clear line  format: \escape[command\escape[command;
   run();
 }
+
 bool Game::choosePiece(vector<int> piecesRemaining) {
   cout << "Enter the name of the string you would like to select: ";
   string tempName;
@@ -140,3 +141,7 @@ if(board.validatePlacement(x,y, playerTurn)) {
 } while (!board.validatePlacement(x,y, playerTurn));
 }
 void Game::run() {}
+
+bool Game::getTurn() {
+    return playerTurn;
+}
