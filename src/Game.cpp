@@ -69,7 +69,7 @@ bool Game::choosePiece(vector<int> &piecesRemaining) {
   if (tempName == "Bomb" || piecesRemaining.at(0) > 0) {
     piece = new Bomb;
     selectLocation(piece);
-    --piecesRemaining.at(0);
+    piecesRemaining.at(0)--;
     return false;
   } else if (tempName == "Marshall" || piecesRemaining.at(1) > 0) {
     piece = new Marshall;
