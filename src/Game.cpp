@@ -138,7 +138,44 @@ if(board.validatePlacement(x,y, playerTurn)) {
 }
 } while (!board.validatePlacement(x,y, playerTurn));
 }
-void Game::run() {}
+void Game::run() {
+    // do {
+    
+    int xCoord = 0;
+    int yCoord = 0;
+    int xMove = 0;
+    int yMove = 0;
+    bool continueGame = true;
+    Piece* piecePtr;
+
+    /*if (playerTurn == true) {
+        board.printBlue();
+        playerTurn = false;
+    } else {
+        board.printRed();
+        playerTurn = true;
+    }*/
+
+    board.printBoard();
+    cout << "Select the piece you would like to move: " << endl;
+    cout << "x: ";
+    cin >> xCoord;
+    cout << "y: ";
+    cin >> yCoord;
+
+    // add selection validation
+
+    piecePtr = board.selectPiece(xCoord, yCoord);
+
+    board.validateMovement(xMove, yMove);
+
+    board.move(piecePtr, xMove, yMove);
+
+    cout << "\033[2J\033[1;1H";
+
+    // } while (continueGame)
+
+}
 
 bool Game::getTurn() {
     return playerTurn;
