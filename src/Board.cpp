@@ -17,10 +17,17 @@ void Board::printBoard() {
   cout << "========================\n";
   cout << "       || BLUE ||\n" << endl;
 }
+void Board::printBlue() {
+
+}
+void Board::printRed() {
+
+}
+
 // note that validateMovement needs to consider the movement abilities of the
 // piece in question
 bool Board::validateMovement(int x, int y) {
-  if (x < 0 || y < 0 || x > 9 || y > 9 || Pieces[x][y]->getname() != "River") {
+  if (x < 0 || y < 0 || x > 9 || y > 9 || Pieces[y][x]->getname() != "River") {
     return false;
   } else {
     return true;
