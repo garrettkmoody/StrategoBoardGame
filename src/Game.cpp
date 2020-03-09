@@ -7,11 +7,12 @@ using namespace std;
 void Game::initialize() {
   // made a little progress on this for you -CM
   bool check1;
-
+  vector<int> piecesRemainingB = {6, 1, 1, 2, 3, 4, 4, 4, 5, 8, 1, 1};
+  vector<int> piecesRemainingR = {6, 1, 1, 2, 3, 4, 4, 4, 5, 8, 1, 1};
   for (int i = 40; i > 0; i--) {
-      playerTurn = true;
-    vector<int> piecesRemainingB = {6, 1, 1, 2, 3, 4, 4, 4, 5, 8, 1, 1};
-    //board.printBlue();
+    playerTurn = true;
+
+    // board.printBlue();
     board.printBoard();
     cout << endl << "\tLeft to place: " << endl;
     cout << "Bomb: " << piecesRemainingB.at(0)
@@ -33,8 +34,8 @@ void Game::initialize() {
     }
     cout << "\033[2J\033[1;1H";
     playerTurn = false;
-    vector<int> piecesRemainingR = {6, 1, 1, 2, 3, 4, 4, 4, 5, 8, 1, 1};
-    //board.printRed();
+
+    // board.printRed();
     board.printBoard();
     cout << endl << "\tLeft to place: " << endl;
     cout << "Bomb: " << piecesRemainingR.at(0)
@@ -55,62 +56,75 @@ void Game::initialize() {
       check1 = choosePiece(piecesRemainingR);
     }
   }
-  cout << "\033[2J\033[1;1H"; // this is clear line  format: \escape[command\escape[command;
+  cout << "\033[2J\033[1;1H"; // this is clear line  format:
+                              // \escape[command\escape[command;
   run();
 }
 
-bool Game::choosePiece(vector<int> piecesRemaining) {
+bool Game::choosePiece(vector<int> &piecesRemaining) {
   cout << "Enter the name of the string you would like to select: ";
   string tempName;
   cin >> tempName;
-  Piece* piece;
+  Piece *piece;
   if (tempName == "Bomb" || piecesRemaining.at(0) > 0) {
     piece = new Bomb;
     selectLocation(piece);
+    piecesRemaining.at(0)--;
     return false;
   } else if (tempName == "Marshall" || piecesRemaining.at(1) > 0) {
     piece = new Marshall;
     selectLocation(piece);
+    piecesRemaining.at(1)--;
     return false;
   } else if (tempName == "General" || piecesRemaining.at(2) > 0) {
     piece = new General;
     selectLocation(piece);
+    piecesRemaining.at(2)--;
     return false;
   } else if (tempName == "Colonel" || piecesRemaining.at(3) > 0) {
     piece = new Colonel;
     selectLocation(piece);
+    piecesRemaining.at(3)--;
     return false;
   } else if (tempName == "Major" || piecesRemaining.at(4) > 0) {
     piece = new Major;
     selectLocation(piece);
+    piecesRemaining.at(4)--;
     return false;
   } else if (tempName == "Captain" || piecesRemaining.at(5) > 0) {
     piece = new Captain;
     selectLocation(piece);
+    piecesRemaining.at(5)--;
     return false;
   } else if (tempName == "Lieutenant" || piecesRemaining.at(6) > 0) {
     piece = new Lieutenant;
     selectLocation(piece);
+    piecesRemaining.at(6)--;
     return false;
   } else if (tempName == "Sergeant" || piecesRemaining.at(7) > 0) {
     piece = new Sergeant;
     selectLocation(piece);
+    piecesRemaining.at(7)--;
     return false;
   } else if (tempName == "Miner" || piecesRemaining.at(8) > 0) {
     piece = new Miner;
     selectLocation(piece);
+    piecesRemaining.at(8)--;
     return false;
   } else if (tempName == "Scout" || piecesRemaining.at(9) > 0) {
     piece = new Scout;
     selectLocation(piece);
+    piecesRemaining.at(9)--;
     return false;
   } else if (tempName == "Spy" || piecesRemaining.at(10) > 0) {
     piece = new Spy;
     selectLocation(piece);
+    piecesRemaining.at(10)--;
     return false;
   } else if (tempName == "Flag" || piecesRemaining.at(11) > 0) {
     piece = new Flag;
     selectLocation(piece);
+    piecesRemaining.at(11)--;
     return false;
   } else {
     cout << "You have either entered an invalid piece or there are none of "
@@ -121,22 +135,22 @@ bool Game::choosePiece(vector<int> piecesRemaining) {
   }
 }
 
-void Game::selectLocation(Piece* piece) {
-int x,y;
-do {
-cout << "Select the location you would like to place your piece: " << endl;
-cout << "x: ";
-cin >> x;
-cout << "y: ";
-cin >> y;
-if(board.validatePlacement(x,y, playerTurn)) {
-    piece->setX(x);
-    piece->setY(y);
-    board.place(piece);
-} else {
-    cout << "Invalid Location, please try again." << endl;
-}
-} while (!board.validatePlacement(x,y, playerTurn));
+void Game::selectLocation(Piece *piece) {
+  int x, y;
+  do {
+    cout << "Select the location you would like to place your piece: " << endl;
+    cout << "x: ";
+    cin >> x;
+    cout << "y: ";
+    cin >> y;
+    if (board.validatePlacement(x, y, playerTurn)) {
+      piece->setX(x);
+      piece->setY(y);
+      board.place(piece);
+    } else {
+      cout << "Invalid Location, please try again." << endl;
+    }
+  } while (!board.validatePlacement(x, y, playerTurn));
 }
 void Game::run() {
     // do {
@@ -177,6 +191,4 @@ void Game::run() {
 
 }
 
-bool Game::getTurn() {
-    return playerTurn;
-}
+bool Game::getTurn() { return playerTurn; }

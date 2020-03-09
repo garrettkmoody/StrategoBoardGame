@@ -89,7 +89,7 @@ class Miner : public Piece{
 class Nopiece : public Piece{
     protected:
         std::string name = "Empty";
-        char symbol = '-';
+        char symbol = ' ';
         int rank = -1;
         int movement = 0;
 };
