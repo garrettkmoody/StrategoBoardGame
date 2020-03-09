@@ -48,14 +48,18 @@ bool Board::validatePlacement(int x, int y, bool playerTurn) {
     }
   }
 }
+// Blue is 1, Red is 0.
 // FROM GARRETT: I changed the name of the array to "Pieces" instead of "Piece"
 Piece *Board::selectPiece(int x, int y) {
+
   Piece *piece;
-  if (validateMovement(x, y)) {
-    piece = Pieces[x][y];
+  do {
+  if (validateMovement(x, y) || Pieces[y][x]->getSide()) {
+    piece = Pieces[y][x];
   } else {
-    piece = new Nopiece;
+      cout << "You cannot select this piece." << endl;
   }
+  } while (!validateMovement(x,y));
   return piece;
 }
 // doesn't look like x or y is passed by reference and since you don't set x
@@ -83,7 +87,7 @@ void Board::move(Piece *piece, int x, int y) {
   }
   return;
 }
-//Fixed.
+// Fixed.
 void Board::place(Piece *piece) {
   Pieces[piece->getY()][piece->getX()] = piece;
 }
