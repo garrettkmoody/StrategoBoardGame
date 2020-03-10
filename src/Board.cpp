@@ -84,7 +84,7 @@ Piece *Board::selectPiece(int x, int y, bool playerTurn) {
 // Also, you need to consider things like the scout's movement ability, which
 // lets you select the distance you want to move in a particular direction. When
 // you do move in that direction you need to do a for loop and "move" it through
-// every space to make sure there isn't anything in the way.
+// every space to make sure there isn't anything in the way.-CM
 void Board::move(Piece *piece, int deltaX, int deltaY) {
   if (validateMovement(deltaX, deltaY, piece->getMovement())) {
   }
