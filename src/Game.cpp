@@ -56,7 +56,7 @@ void Game::initialize() {
       check1 = choosePiece(piecesRemainingR);
     }
   }
-  cout << "\033[2J\033[1;1H"; // this is clear line  format:
+  cout << "\033[2J\033[1;1H"; // this is clear console  format:
                               // \escape[command\escape[command;
   run();
 }
@@ -179,7 +179,7 @@ void Game::run() {
 
     // add selection validation
 
-    piecePtr = board.selectPiece(xCoord, yCoord);
+    piecePtr = board.selectPiece(xCoord, yCoord, playerTurn);
 
     board.validateMovement(xMove, yMove);
 

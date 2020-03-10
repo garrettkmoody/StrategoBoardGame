@@ -20,7 +20,7 @@ public:
     }
   }
 
-  Piece* selectPiece(int x, int y);
+  Piece* selectPiece(int x, int y, bool playerTurn);
 
   bool validatePlacement(int x, int y, bool playerTurn);
 

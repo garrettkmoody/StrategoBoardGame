@@ -50,11 +50,11 @@ bool Board::validatePlacement(int x, int y, bool playerTurn) {
 }
 // Blue is 1, Red is 0.
 // FROM GARRETT: I changed the name of the array to "Pieces" instead of "Piece"
-Piece *Board::selectPiece(int x, int y) {
+Piece *Board::selectPiece(int x, int y, bool playerTurn) {
 
   Piece *piece;
   do {
-  if (validateMovement(x, y) || Pieces[y][x]->getSide()) {
+  if (validateMovement(x, y) || Pieces[y][x]->getSide() == playerTurn) {
     piece = Pieces[y][x];
   } else {
       cout << "You cannot select this piece." << endl;
