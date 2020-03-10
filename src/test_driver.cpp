@@ -9,8 +9,10 @@
  *
  */
 #include "Board.h"
+#include "Game.h"
 
 int main() {
     Board test;
-    test.printBoard();
+    Game test1;
+    
 }

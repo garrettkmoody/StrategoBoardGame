@@ -18,8 +18,19 @@ public:
         Pieces[i][j] = new Nopiece();
       }
     }
+    Pieces[4][2] = new River();
+    Pieces[4][3] = new River();
+    Pieces[5][2] = new River();
+    Pieces[5][3] = new River();
+    Pieces[4][6] = new River();
+    Pieces[4][7] = new River();
+    Pieces[5][6] = new River();
+    Pieces[5][7] = new River();
   }
 
+  void randomizePieces();
+  /* ^^^ only here if we want to create a function that randomizes pieces instead of players choosing where each
+   one goes*/
   Piece* selectPiece(int x, int y);
 
   bool validatePlacement(int x, int y, bool playerTurn);

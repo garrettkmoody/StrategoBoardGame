@@ -1,12 +1,13 @@
 #include "Board.h"
+#include "Piece.h"
 #include <iostream>
 using namespace std;
 
 // Keep in mind to consider Blue to be natural bottom of the board.
 // 2d array is [rows][columns] or [y][x]
 void Board::printBoard() {
-  cout << endl << "        || RED ||\n";
-  cout << "========================\n";
+  cout << endl << "             || RED ||\n";
+  cout << "==================================\n";
   for (int i = 0; i < 10; i++) {
     cout << "| ";
     for (int j = 0; j < 10; j++) {
@@ -14,11 +15,16 @@ void Board::printBoard() {
     }
     cout << " |" << endl;
   }
-  cout << "========================\n";
-  cout << "       || BLUE ||\n" << endl;
+  cout << "==================================\n";
+  cout << "            || BLUE ||\n" << endl;
 }
-void Board::printBlue() {}
-void Board::printRed() {}
+void Board::printBlue() {
+
+}
+    
+void Board::printRed() {
+    
+}
 
 // note that validateMovement needs to consider the movement abilities of the
 // piece in question.

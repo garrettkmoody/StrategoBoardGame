@@ -23,102 +23,122 @@ class Piece {
         bool getSide() {return side;}
         void setSide(bool side) {this -> side = side;}
 };
+
+
+//I had to create constructors for each of the subclasses because the values(name,symbol,rank,movement) weren't being
+// initialized and my print function couldn't see them - Garrett Moody
+
+//Also it might be helpful to create a variable in the class that lets you set the team of each piece
 class Bomb : public Piece{
-    protected:
-        std::string name = "Bomb";
-        char symbol = 'B';
-        int rank = 11;
-        int movement = 0;
+    public:
+    Bomb() {
+        name = "Bomb";
+        symbol = 'B';
+        rank = 11;
+        movement = 0; }
 };
 class Captain : public Piece{
-    protected:
-        std::string name = "Captain";
-        char symbol = '5';
-        int rank = 6;
-        int movement = 1;
+    public:
+    Captain() {
+        name = "Captain";
+        symbol = '5';
+        rank = 6;
+        movement = 1; }
 };
 class Colonel : public Piece{
-    protected:
-        std::string name = "Colonel";
-        char symbol = '3';
-        int rank = 8;
-        int movement =1;
+    public:
+    Colonel() {
+        name = "Colonel";
+        symbol = '3';
+        rank = 8;
+        movement =1; }
 };
 class Flag : public Piece{
-    protected:
-        std::string name = "Flag";
-        char symbol = 'F';
-        int rank = 0;
-        int movement =0;
+    public:
+    Flag() {
+        name = "Flag";
+        symbol = 'F';
+        rank = 0;
+        movement =0; }
 };
 class General : public Piece{
-    protected:
-        std::string name = "General";
-        char symbol = '2';
-        int rank = 9;
-        int movement =1;
+    public:
+    General() {
+        name = "General";
+        symbol = '2';
+        rank = 9;
+        movement =1; }
 };
 class Lieutenant : public Piece{
-    protected:
-        std::string name = "Lieutenant";
-        char symbol = '6';
-        int rank = 5;
-        int movement =1;
+    public:
+    Lieutenant() {
+        name = "Lieutenant";
+        symbol = '6';
+        rank = 5;
+        movement =1; }
 };
 class Major : public Piece{
-    protected:
-        std::string name = "Major";
-        char symbol = '4';
-        int rank = 7;
-        int movement =1;
+    public:
+    Major() {
+        name = "Major";
+        symbol = '4';
+        rank = 7;
+        movement =1; }
 };
 class Marshall : public Piece{
-    protected:
-        std::string name = "Marshall";
-        char symbol = '1';
-        int rank = 10;
-        int movement = 1;
+    public:
+    Marshall() {
+        name = "Marshall";
+        symbol = '1';
+        rank = 10;
+        movement = 1; }
 };
 class Miner : public Piece{
-    protected:
-        std::string name = "Miner";
-        char symbol = '8';
-        int rank = 3;
-        int movement =1;
+    public:
+    Miner() {
+        name = "Miner";
+        symbol = '8';
+        rank = 3;
+        movement =1; }
 };
 class Nopiece : public Piece{
-    protected:
-        std::string name = "Empty";
-        char symbol = ' ';
-        int rank = -1;
-        int movement = 0;
+    public:
+    Nopiece() {
+        name = "Empty";
+        symbol = ' ';
+        rank = -1;
+        movement = 0; }
 };
 class River : public Piece{
-    protected:
-        std::string name = "River";
-        char symbol = '~';
-        int rank = -1;
-        int movement = 0;
+    public:
+    River() {
+        name = "River";
+        symbol = '~';
+        rank = -1;
+        movement = 0; }
 };
 class Scout : public Piece{
-    protected:
-        std::string name = "Scout";
-        char symbol = '9';
-        int rank = 2;
-        int movement =10;
+    public:
+    Scout() {
+        name = "Scout";
+        symbol = '9';
+        rank = 2;
+        movement =10; }
 };
 class Sergeant : public Piece{
-    protected:
-        std::string name = "Sergeant";
-        char symbol = '7';
-        int rank = 4;
-        int movement =1;
+    public:
+    Sergeant() {
+        name = "Sergeant";
+        symbol = '7';
+        rank = 4;
+        movement =1; }
 };
 class Spy : public Piece{
-    protected:
-        std::string name = "Spy";
-        char symbol = 'S';
-        int rank = 1;
-        int movement =1;
+    public:
+    Spy() {
+        name = "Spy";
+        symbol = 'S';
+        rank = 1;
+        movement =1; }
 };
 #endif
