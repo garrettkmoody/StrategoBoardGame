@@ -21,7 +21,7 @@ void Board::printBlue() {}
 void Board::printRed() {}
 
 // note that validateMovement needs to consider the movement abilities of the
-// piece in question.
+// piece in question.-CM
 bool Board::validateMovement(int x, int y) {
   if (x < 0 || y < 0 || x > 9 || y > 9 || Pieces[y][x]->getname() != "River") {
     return false;
