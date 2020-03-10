@@ -181,7 +181,7 @@ void Game::run() {
 
     piecePtr = board.selectPiece(xCoord, yCoord);
 
-    board.validateMovement(xMove, yMove);
+    board.validateMovement(xMove, yMove, piecePtr->getMovement());
 
     board.move(piecePtr, xMove, yMove);
 
