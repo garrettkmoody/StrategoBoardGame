@@ -23,12 +23,12 @@ void Board::printRed() {}
 
 // note that validateMovement needs to consider the movement abilities of the
 // piece in question.
-bool Board::validateMovement(int deltaX, int deltaY, int movement) {
-  if ((abs(deltaX) <= movement && abs(deltaY) == 0) ||
-      (abs(deltaY) <= movement && abs(deltaX) == 0)) {
-    return false;
-  } else {
+bool Board::validateMovement(Piece * piece, int x, int y, int movement) {
+  if ((abs(piece->getX - x) <= movement && abs(piece->getY - y) == 0) ||
+      (abs(piece->getY - y) <= movement && abs((piece->getX - x) == 0)) {
     return true;
+  } else {
+    return false;
   }
 }
 
@@ -73,6 +73,8 @@ Piece *Board::selectPiece(int x, int y, bool playerTurn) {
     if (validateSelection(x, y, playerTurn) &&
         Pieces[y][x]->getSide() == playerTurn) {
       piece = Pieces[y][x];
+	  piece->setY(y);
+	  piece->setX(x);
     } else {
       cout << "You cannot select this piece." << endl;
     }
@@ -85,8 +87,8 @@ Piece *Board::selectPiece(int x, int y, bool playerTurn) {
 // lets you select the distance you want to move in a particular direction. When
 // you do move in that direction you need to do a for loop and "move" it through
 // every space to make sure there isn't anything in the way.-CM
-void Board::move(Piece *piece, int deltaX, int deltaY) {
-  if (validateMovement(deltaX, deltaY, piece->getMovement())) {
+void Board::move(Piece *piece, int x, int y) {
+  if (validateMovement(x, y, piece->getMovement())) {
   }
 }
 // Fixed.
