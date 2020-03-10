@@ -1,4 +1,5 @@
 #include "Board.h"
+#include <cstdlib>
 #include <iostream>
 using namespace std;
 
@@ -21,45 +22,65 @@ void Board::printBlue() {}
 void Board::printRed() {}
 
 // note that validateMovement needs to consider the movement abilities of the
-// piece in question.-CM
-bool Board::validateMovement(int x, int y) {
-  if (x < 0 || y < 0 || x > 9 || y > 9 || Pieces[y][x]->getname() != "River") {
+// piece in question.
+bool Board::validateMovement(int deltaX, int deltaY, int movement) {
+  if ((abs(deltaX) <= movement && abs(deltaY) == 0) ||
+      (abs(deltaY) <= movement && abs(deltaX) == 0)) {
     return false;
   } else {
     return true;
   }
 }
+
+// Seperated the function of validate into a validate selection and validate
+// movement to support scout movement speed
+bool Board::validateSelection(int x, int y, bool playerTurn) {
+  if (x < 0 || y < 0 || x > 9 || y > 9) {
+    return false;
+  } else if (Pieces[y][x]->getName() == "River" ||
+             playerTurn != Pieces[y][x]->getSide()) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
 // Garrett seems to be making the board with (0,0) in the top left keep that in
 // mind. Blue seems to work ok, but red needs work -CM
+// If you restrict the placement to the x and y values you have, then there's
+// no way to hit a river piece. -AP
 bool Board::validatePlacement(int x, int y, bool playerTurn) {
   if (playerTurn) { // blue
-    if (x >= 0 || y >= 6 || x <= 9 || y <= 9 ||
-        Pieces[y][x]->getname() != "River") {
+    if (x >= 0 || y >= 6 || x <= 9 || y <= 9) {
       return true;
     } else {
       return false;
     }
   } else { // red
-    if (x >= 0 || y >= 0 || x <= 9 || y <= 3 ||
-        Pieces[y][x]->getname() != "River") {
+    if (x >= 0 || y >= 0 || x <= 9 || y <= 3) {
       return true;
     } else {
       return false;
     }
   }
 }
+
 // Blue is 1, Red is 0.
 // FROM GARRETT: I changed the name of the array to "Pieces" instead of "Piece"
 Piece *Board::selectPiece(int x, int y, bool playerTurn) {
 
   Piece *piece;
-  do {
-  if (validateMovement(x, y) || Pieces[y][x]->getSide() == playerTurn) {
-    piece = Pieces[y][x];
-  } else {
-      cout << "You cannot select this piece." << endl;
+  if (validateSelection(x, y, playerTurn)) {
+    piece = Pieces[x][y];
+    do {
+      if (validateMovement(x, y, playerTurn) &&
+          Pieces[y][x]->getSide() == playerTurn) {
+        piece = Pieces[y][x];
+      } else {
+        cout << "You cannot select this piece." << endl;
+      }
+    } while (!validateMovement(x, y, piece->getMovement()));
   }
-  } while (!validateMovement(x,y));
   return piece;
 }
 // doesn't look like x or y is passed by reference and since you don't set x
@@ -68,24 +89,9 @@ Piece *Board::selectPiece(int x, int y, bool playerTurn) {
 // lets you select the distance you want to move in a particular direction. When
 // you do move in that direction you need to do a for loop and "move" it through
 // every space to make sure there isn't anything in the way.
-void Board::move(Piece *piece, int x, int y) {
-  char move;
-  cin >> move;
-  switch (move) {
-  case 'w': {
-    y++;
-  } break;
-  case 'a': {
-    x--;
-  } break;
-  case 'd': {
-    x++;
-  } break;
-  case 's': {
-    y--;
-  } break;
+void Board::move(Piece *piece, int deltaX, int deltaY) {
+  if (validateMovement(deltaX, deltaY, piece->getMovement())) {
   }
-  return;
 }
 // Fixed.
 void Board::place(Piece *piece) {

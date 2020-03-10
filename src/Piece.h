@@ -16,7 +16,7 @@ class Piece {
         void setX(int x) {this -> x = x;}
         int getY() {return y;}
         void setY(int y) {this -> y = y;}
-        std::string getname() {return name;}
+        std::string getName() {return name;}
         char getSymbol() {return symbol;}
         int getRank() {return rank;}
         int getMovement() {return movement;}
