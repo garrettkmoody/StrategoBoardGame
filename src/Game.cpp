@@ -57,12 +57,12 @@ void Game::initialize() {
     while (check1) {
       check1 = choosePiece(piecesRemainingR);
     }
-  }
   cout << "\033[2J\033[1;1H"; // this is clear console  format:
                               // \escape[command\escape[command;
   cout << "Press any key when Blue is ready." << endl;
   cin.get();
   run();
+}
 }
 
 bool Game::choosePiece(vector<int> &piecesRemaining) {
