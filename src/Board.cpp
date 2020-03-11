@@ -1,6 +1,7 @@
 #include "Board.h"
 #include <cstdlib>
 #include <iostream>
+
 using namespace std;
 
 // Keep in mind to consider Blue to be natural bottom of the board.
@@ -18,7 +19,23 @@ void Board::printBoard() {
   cout << "==================================\n";
   cout << "            || BLUE ||\n" << endl;
 }
-void Board::printBlue() {}
+void Board::printBlue() {
+  cout << endl << "             || RED ||\n";
+  cout << "==================================\n";
+  for (int i = 0; i < 10; i++) {
+    cout << "| ";
+    for (int j = 0; j < 10; j++) {
+      if (Pieces[i][j]->getSide() == 1) {
+        cout << "[" << Pieces[i][j]->getSymbol() << "]";
+      } else {
+        cout << "[" << '?' << "]";
+      }
+    }
+    cout << " |" << endl;
+  }
+  cout << "==================================\n";
+  cout << "            || BLUE ||\n" << endl;
+}
 
 void Board::printRed() {}
 
