@@ -185,9 +185,9 @@ void Game::run() {
 
   piecePtr = board.selectPiece(xCoord, yCoord, playerTurn);
 
-  board.validateMovement(xMove, yMove, piecePtr->getMovement());
+  board.validateMovement(piecePtr, xMove, yMove, piecePtr->getMovement(), playerTurn);
 
-  board.move(piecePtr, xMove, yMove);
+  board.move(piecePtr, xMove, yMove, playerTurn);
 
   cout << "\033[2J\033[1;1H";
 

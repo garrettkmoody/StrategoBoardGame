@@ -29,6 +29,7 @@ class Piece {
 // initialized and my print function couldn't see them - Garrett Moody
 
 //Also it might be helpful to create a variable in the class that lets you set the team of each piece
+//There is one already in the superclass. -CM
 class Bomb : public Piece{
     public:
     Bomb() {

@@ -42,7 +42,7 @@ public:
 
   void printRed();
 
-  void move(Piece* piece, int x, int y);
+  void move(Piece* piece, int x, int y, bool playerTurn);
 
   void place(Piece* piece);
 };
