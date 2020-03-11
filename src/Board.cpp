@@ -55,6 +55,8 @@ bool Board::validateSelection(int x, int y, bool playerTurn) {
 // mind. Blue seems to work ok, but red needs work -CM
 // If you restrict the placement to the x and y values you have, then there's
 // no way to hit a river piece. -AP
+
+// Validate movement still needs to check if a place on the board is occupied by another piece
 bool Board::validatePlacement(int x, int y, bool playerTurn) {
   if (playerTurn) { // blue
     if (x >= 0 || y >= 6 || x <= 9 || y <= 9) {

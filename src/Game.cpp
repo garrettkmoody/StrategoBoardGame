@@ -157,13 +157,14 @@ void Game::selectLocation(Piece *piece) {
   } while (!board.validatePlacement(x, y, playerTurn));
 }
 void Game::run() {
-  // do {
+    bool continueGame = true;
+  do {
 
   int xCoord = 0;
   int yCoord = 0;
   int xMove = 0;
   int yMove = 0;
-  bool continueGame = true;
+  
   Piece *piecePtr;
 
   /*if (playerTurn == true) {
@@ -183,15 +184,17 @@ void Game::run() {
 
   // add selection validation
 
+  //board.validateSelection(xCoord, yCoord, playerTurn);
+
   piecePtr = board.selectPiece(xCoord, yCoord, playerTurn);
 
-  board.validateMovement(piecePtr, xMove, yMove, piecePtr->getMovement(), playerTurn);
+  //board.validateMovement(piecePtr, xMove, yMove, piecePtr->getMovement(), playerTurn);
 
   board.move(piecePtr, xMove, yMove, playerTurn);
 
   cout << "\033[2J\033[1;1H";
 
-  // } while (continueGame)
+  } while (continueGame);
 }
 
 bool Game::getTurn() { return playerTurn; }
