@@ -1,8 +1,12 @@
 #include "Board.h"
 #include <cstdlib>
 #include <iostream>
-using namespace std;
 
+//the board still lets you place pieces outside of the board, and always places a bomb. 
+//the count of pieces also doesnt seem to update
+
+using namespace std;
+//Blue is 1 red is 0;
 // Keep in mind to consider Blue to be natural bottom of the board.
 // 2d array is [rows][columns] or [y][x]
 void Board::printBoard() {
@@ -18,7 +22,23 @@ void Board::printBoard() {
   cout << "==================================\n";
   cout << "            || BLUE ||\n" << endl;
 }
-void Board::printBlue() {}
+void Board::printBlue() {
+  cout << endl << "             || RED ||\n";
+  cout << "==================================\n";
+  for (int i = 0; i < 10; i++) {
+    cout << "| ";
+    for (int j = 0; j < 10; j++) {
+      if (Pieces[i][j]->getSide() == 1) {
+        cout << "[" << Pieces[i][j]->getSymbol() << "]";
+      } else {
+        cout << "[" << '?' << "]";
+      }
+    }
+    cout << " |" << endl;
+  }
+  cout << "==================================\n";
+  cout << "            || BLUE ||\n" << endl;
+}
 
 void Board::printRed() {}
 
