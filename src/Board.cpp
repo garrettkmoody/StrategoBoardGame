@@ -23,12 +23,16 @@ void Board::printRed() {}
 
 // note that validateMovement needs to consider the movement abilities of the
 // piece in question.
-bool Board::validateMovement(Piece * piece, int x, int y, int movement) {
-  if ((abs(piece->getX - x) <= movement && abs(piece->getY - y) == 0) ||
-      (abs(piece->getY - y) <= movement && abs((piece->getX - x) == 0)) {
-    return true;
-  } else {
+bool Board::validateMovement(Piece * piece, int x, int y, int movement, bool playerTurn) {
+  if (!(abs(piece->getX - x) <= movement && abs(piece->getY - y) == 0) &&
+      !(abs(piece->getY - y) <= movement && abs((piece->getX - x) == 0)
     return false;
+  } else if ((x < 0 || y < 0 || x > 9 || y > 9) || Pieces[y][x]->getName() == "River"
+	  || playerTurn == Pieces[y][x]->getSide()) {
+    return false;
+  }
+  else {
+  return true;
   }
 }
 
@@ -88,7 +92,8 @@ Piece *Board::selectPiece(int x, int y, bool playerTurn) {
 // you do move in that direction you need to do a for loop and "move" it through
 // every space to make sure there isn't anything in the way.-CM
 void Board::move(Piece *piece, int x, int y) {
-  if (validateMovement(x, y, piece->getMovement())) {
+  if (validateMovement(piece, x, y, piece->getMovement())) {
+
   }
 }
 // Fixed.

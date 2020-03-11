@@ -26,7 +26,7 @@ public:
 
   bool validatePlacement(int x, int y, bool playerTurn);
 
-  bool validateMovement(Piece * piece, int x, int y, int movement);
+  bool validateMovement(Piece * piece, int x, int y, int movement, bool playerTurn);
 
   void printBoard();
 
