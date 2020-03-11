@@ -33,6 +33,8 @@ void Game::initialize() {
       check1 = choosePiece(piecesRemainingB);
     }
     cout << "\033[2J\033[1;1H";
+    cout << "Press any key when Red is ready." << endl;
+    cin.get();
     playerTurn = false;
 
     // board.printRed();
@@ -56,8 +58,10 @@ void Game::initialize() {
       check1 = choosePiece(piecesRemainingR);
     }
   }
-  cout << "\033[2J\033[1;1H"; // this is clear line  format:
+  cout << "\033[2J\033[1;1H"; // this is clear console  format:
                               // \escape[command\escape[command;
+  cout << "Press any key when Blue is ready." << endl;
+  cin.get();
   run();
 }
 
@@ -153,42 +157,41 @@ void Game::selectLocation(Piece *piece) {
   } while (!board.validatePlacement(x, y, playerTurn));
 }
 void Game::run() {
-    // do {
-    
-    int xCoord = 0;
-    int yCoord = 0;
-    int xMove = 0;
-    int yMove = 0;
-    bool continueGame = true;
-    Piece* piecePtr;
+  // do {
 
-    /*if (playerTurn == true) {
-        board.printBlue();
-        playerTurn = false;
-    } else {
-        board.printRed();
-        playerTurn = true;
-    }*/
+  int xCoord = 0;
+  int yCoord = 0;
+  int xMove = 0;
+  int yMove = 0;
+  bool continueGame = true;
+  Piece *piecePtr;
 
-    board.printBoard();
-    cout << "Select the piece you would like to move: " << endl;
-    cout << "x: ";
-    cin >> xCoord;
-    cout << "y: ";
-    cin >> yCoord;
+  /*if (playerTurn == true) {
+      board.printBlue();
+      playerTurn = false;
+  } else {
+      board.printRed();
+      playerTurn = true;
+  }*/
 
-    // add selection validation
+  board.printBoard();
+  cout << "Select the piece you would like to move: " << endl;
+  cout << "x: ";
+  cin >> xCoord;
+  cout << "y: ";
+  cin >> yCoord;
 
-    piecePtr = board.selectPiece(xCoord, yCoord);
+  // add selection validation
 
-    board.validateMovement(xMove, yMove);
+  piecePtr = board.selectPiece(xCoord, yCoord, playerTurn);
 
-    board.move(piecePtr, xMove, yMove);
+  board.validateMovement(xMove, yMove, piecePtr->getMovement());
 
-    cout << "\033[2J\033[1;1H";
+  board.move(piecePtr, xMove, yMove);
 
-    // } while (continueGame)
+  cout << "\033[2J\033[1;1H";
 
+  // } while (continueGame)
 }
 
 bool Game::getTurn() { return playerTurn; }

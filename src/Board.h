@@ -28,14 +28,13 @@ public:
     Pieces[5][7] = new River();
   }
 
-  void randomizePieces();
-  /* ^^^ only here if we want to create a function that randomizes pieces instead of players choosing where each
-   one goes*/
-  Piece* selectPiece(int x, int y);
+  Piece* selectPiece(int x, int y, bool playerTurn);
+
+  bool validateSelection(int x, int y, bool playerTurn);
 
   bool validatePlacement(int x, int y, bool playerTurn);
 
-  bool validateMovement(int x, int y);
+  bool validateMovement(Piece * piece, int x, int y, int movement, bool playerTurn);
 
   void printBoard();
 
