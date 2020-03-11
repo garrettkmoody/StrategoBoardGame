@@ -156,6 +156,7 @@ void Game::selectLocation(Piece *piece) {
     }
   } while (!board.validatePlacement(x, y, playerTurn));
 }
+
 void Game::run() {
     bool continueGame = true;
   do {
