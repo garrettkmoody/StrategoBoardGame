@@ -3,7 +3,7 @@
 #include <iostream>
 
 using namespace std;
-
+//Blue is 1 red is 0;
 // Keep in mind to consider Blue to be natural bottom of the board.
 // 2d array is [rows][columns] or [y][x]
 void Board::printBoard() {
