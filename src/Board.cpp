@@ -129,6 +129,10 @@ Piece *Board::selectPiece(int x, int y, bool playerTurn) {
 // replace old location with nopiece.
 
 void Board::move(Piece *piece, int x, int y, bool playerTurn) {
+    char direction;
+    cout << "what direction(wasd) would you like to move the piece: ";
+    cin >> direction;
+    // switch statement
   if (validateMovement(piece, x, y, piece->getMovement(), playerTurn)) {
   }
 }
