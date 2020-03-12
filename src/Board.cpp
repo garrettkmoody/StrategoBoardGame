@@ -46,17 +46,21 @@ void Board::printBlue() {
 void Board::printRed() {}
 
 // note that validateMovement needs to consider the movement abilities of the
-// piece in question.
+// piece in question. We need to have seperate else ifs for x and y restrictions
+// else it will return junk when we call the board to check if the end location is
+// a river or an ally.
 
 bool Board::validateMovement(Piece *piece, int x, int y, int movement,
                              bool playerTurn) {
   if ((!(abs(piece->getX() - x) <= movement && abs(piece->getY() - y) == 0) &&
        !(abs(piece->getY() - y) <= movement && abs(piece->getX() - x) == 0))) {
     return false;
-  } else if ((x < 0 || y < 0 || x > 9 || y > 9) ||
-             Pieces[y][x]->getName() == "River" ||
-             playerTurn == Pieces[y][x]->getSide()) {
+  } else if (x < 0 || y < 0 || x > 9 || y > 9) {
     return false;
+  }
+  else if (Pieces[y][x]->getName() == "River" ||
+	  playerTurn == Pieces[y][x]->getSide()) {
+	  return false
   } else {
     return true;
   }
