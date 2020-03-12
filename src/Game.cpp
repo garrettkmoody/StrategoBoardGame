@@ -238,4 +238,4 @@ void Game::run() {
   } while (continueGame);
 }
 
-bool Game::getTurn() { return playerTurn; }
+bool Game::getTurn() { return playerTurn; }// still don't understand why we need this. -CM
