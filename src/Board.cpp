@@ -119,7 +119,7 @@ Piece *Board::selectPiece(int x, int y, bool playerTurn) {
 // you do move in that direction you need to do a loop and "move" it through
 // every space to make sure there isn't anything in the way.-CM
 
-// THE PLAN
+// THE PLAN(ish)
 //=================================
 // select direction
 // if movement > 1 enter a distance
