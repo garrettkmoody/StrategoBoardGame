@@ -8,6 +8,7 @@ class Game {
 public:
   Game();
   void run();
+  void printRemaining(std::vector<int>);
   bool choosePiece(std::vector<int>&);
   void selectLocation(Piece*);
   bool getTurn();

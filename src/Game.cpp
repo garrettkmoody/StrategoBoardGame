@@ -16,19 +16,7 @@ Game::Game() {
 
     board.printBlue();
     // board.printBoard();
-    cout << endl << "\tLeft to place: " << endl;
-    cout << "Bomb: " << piecesRemainingB.at(0)
-         << "\tMarshall: " << piecesRemainingB.at(1)
-         << "\tGeneral: " << piecesRemainingB.at(2) << endl;
-    cout << "Colonel: " << piecesRemainingB.at(3)
-         << "\tMajor: " << piecesRemainingB.at(4)
-         << "\tCaptain: " << piecesRemainingB.at(5) << endl;
-    cout << "Lieutenant: " << piecesRemainingB.at(6)
-         << "\tSergeant: " << piecesRemainingB.at(7)
-         << "\tMiner: " << piecesRemainingB.at(8) << endl;
-    cout << "Scout: " << piecesRemainingB.at(9)
-         << "\tSpy: " << piecesRemainingB.at(10)
-         << "\tFlag: " << piecesRemainingB.at(11) << endl;
+    printRemaining(piecesRemainingB);
     check1 = true;
     while (check1) {
       check1 = choosePiece(piecesRemainingB);
@@ -41,19 +29,7 @@ Game::Game() {
 
     // board.printRed();
     board.printBoard();
-    cout << endl << "\tLeft to place: " << endl;
-    cout << "Bomb: " << piecesRemainingR.at(0)
-         << "\tMarshall: " << piecesRemainingR.at(1)
-         << "\tGeneral: " << piecesRemainingR.at(2) << endl;
-    cout << "Colonel: " << piecesRemainingR.at(3)
-         << "\tMajor: " << piecesRemainingR.at(4)
-         << "\tCaptain: " << piecesRemainingR.at(5) << endl;
-    cout << "Lieutenant: " << piecesRemainingR.at(6)
-         << "\tSergeant: " << piecesRemainingR.at(7)
-         << "\tMiner: " << piecesRemainingR.at(8) << endl;
-    cout << "Scout: " << piecesRemainingR.at(9)
-         << "\tSpy: " << piecesRemainingR.at(10)
-         << "\tFlag: " << piecesRemainingR.at(11) << endl;
+    printRemaining(piecesRemainingR);
 
     check1 = true;
     while (check1) {
@@ -64,6 +40,22 @@ Game::Game() {
     cout << "Press any key when Blue is ready." << endl << flush;
     cin >> check2;
   }
+}
+
+void Game::printRemaining(std::vector<int> piecesRemaining) {
+cout << endl << "\tLeft to place: " << endl;
+    cout << "Bomb: " << piecesRemaining.at(0)
+         << "\t\tMarshall: " << piecesRemaining.at(1)
+         << "\t\tGeneral: " << piecesRemaining.at(2) << endl;
+    cout << "Colonel: " << piecesRemaining.at(3)
+         << "\t\tMajor: " << piecesRemaining.at(4)
+         << "\t\tCaptain: " << piecesRemaining.at(5) << endl;
+    cout << "Lieutenant: " << piecesRemaining.at(6)
+         << "\t\tSergeant: " << piecesRemaining.at(7)
+         << "\t\tMiner: " << piecesRemaining.at(8) << endl;
+    cout << "Scout: " << piecesRemaining.at(9)
+         << "\t\tSpy: " << piecesRemaining.at(10)
+         << "\t\tFlag: " << piecesRemaining.at(11) << endl;
 }
 
 bool Game::choosePiece(vector<int> &piecesRemaining) {
