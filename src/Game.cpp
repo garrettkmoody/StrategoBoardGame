@@ -1,6 +1,6 @@
+#include <cstdlib>
 #include <iostream>
 #include <vector>
-#include <cstdlib>
 using namespace std;
 #include "Board.h"
 #include "Game.h"
@@ -8,13 +8,14 @@ using namespace std;
 Game::Game() {
   // made a little progress on this for you -CM
   bool check1;
+  char check2;
   vector<int> piecesRemainingB = {6, 1, 1, 2, 3, 4, 4, 4, 5, 8, 1, 1};
   vector<int> piecesRemainingR = {6, 1, 1, 2, 3, 4, 4, 4, 5, 8, 1, 1};
   for (int i = 40; i > 0; i--) {
     playerTurn = true;
 
     board.printBlue();
-    //board.printBoard();
+    // board.printBoard();
     cout << endl << "\tLeft to place: " << endl;
     cout << "Bomb: " << piecesRemainingB.at(0)
          << "\tMarshall: " << piecesRemainingB.at(1)
@@ -28,14 +29,13 @@ Game::Game() {
     cout << "Scout: " << piecesRemainingB.at(9)
          << "\tSpy: " << piecesRemainingB.at(10)
          << "\tFlag: " << piecesRemainingB.at(11) << endl;
-
     check1 = true;
     while (check1) {
       check1 = choosePiece(piecesRemainingB);
     }
     cout << "\033[2J\033[1;1H";
     cout << "Press any key when Red is ready." << endl;
-    cin.get();
+    cin >> check2;
 
     playerTurn = false;
 
@@ -59,12 +59,11 @@ Game::Game() {
     while (check1) {
       check1 = choosePiece(piecesRemainingR);
     }
-  cout << "\033[2J\033[1;1H"; // this is clear console  format:
-                              // \escape[command\escape[command;
-  cout << "Press any key when Blue is ready." << endl;
-  cin.get();
-}
-
+    cout << "\033[2J\033[1;1H"; // this is clear console  format:
+                                // \escape[command\escape[command;
+    cout << "Press any key when Blue is ready." << endl << flush;
+    cin >> check2;
+  }
 }
 
 bool Game::choosePiece(vector<int> &piecesRemaining) {
@@ -173,42 +172,43 @@ void Game::selectLocation(Piece *piece) {
 }
 
 void Game::run() {
-    bool continueGame = true;
+  bool continueGame = true;
   do {
 
-  int xCoord = 0;
-  int yCoord = 0;
-  int xMove = 0;
-  int yMove = 0;
-  
-  Piece *piecePtr;
+    int xCoord = 0;
+    int yCoord = 0;
+    int xMove = 0;
+    int yMove = 0;
 
-  /*if (playerTurn == true) {
-      board.printBlue();
-      playerTurn = false;
-  } else {
-      board.printRed();
-      playerTurn = true;
-  }*/
+    Piece *piecePtr;
 
-  board.printBoard();
-  cout << "Select the piece you would like to move: " << endl;
-  cout << "x: ";
-  cin >> xCoord;
-  cout << "y: ";
-  cin >> yCoord;
+    /*if (playerTurn == true) {
+        board.printBlue();
+        playerTurn = false;
+    } else {
+        board.printRed();
+        playerTurn = true;
+    }*/
 
-  // add selection validation
+    board.printBoard();
+    cout << "Select the piece you would like to move: " << endl;
+    cout << "x: ";
+    cin >> xCoord;
+    cout << "y: ";
+    cin >> yCoord;
 
-  //board.validateSelection(xCoord, yCoord, playerTurn);
+    // add selection validation
 
-  piecePtr = board.selectPiece(xCoord, yCoord, playerTurn);
+    // board.validateSelection(xCoord, yCoord, playerTurn);
 
-  //board.validateMovement(piecePtr, xMove, yMove, piecePtr->getMovement(), playerTurn);
+    piecePtr = board.selectPiece(xCoord, yCoord, playerTurn);
 
-  board.move(piecePtr, xMove, yMove, playerTurn);
+    // board.validateMovement(piecePtr, xMove, yMove, piecePtr->getMovement(),
+    // playerTurn);
 
-  cout << "\033[2J\033[1;1H";
+    board.move(piecePtr, xMove, yMove, playerTurn);
+
+    cout << "\033[2J\033[1;1H";
 
   } while (continueGame);
 }
