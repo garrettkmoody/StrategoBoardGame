@@ -1,10 +1,11 @@
 #include <iostream>
 #include <vector>
+#include <cstdlib>
 using namespace std;
 #include "Board.h"
 #include "Game.h"
 
-void Game::initialize() {
+Game::Game() {
   // made a little progress on this for you -CM
   bool check1;
   vector<int> piecesRemainingB = {6, 1, 1, 2, 3, 4, 4, 4, 5, 8, 1, 1};
@@ -12,8 +13,8 @@ void Game::initialize() {
   for (int i = 40; i > 0; i--) {
     playerTurn = true;
 
-    // board.printBlue();
-    board.printBoard();
+    board.printBlue();
+    //board.printBoard();
     cout << endl << "\tLeft to place: " << endl;
     cout << "Bomb: " << piecesRemainingB.at(0)
          << "\tMarshall: " << piecesRemainingB.at(1)
@@ -35,6 +36,7 @@ void Game::initialize() {
     cout << "\033[2J\033[1;1H";
     cout << "Press any key when Red is ready." << endl;
     cin.get();
+
     playerTurn = false;
 
     // board.printRed();
@@ -61,8 +63,8 @@ void Game::initialize() {
                               // \escape[command\escape[command;
   cout << "Press any key when Blue is ready." << endl;
   cin.get();
-  run();
 }
+
 }
 
 bool Game::choosePiece(vector<int> &piecesRemaining) {
@@ -70,73 +72,74 @@ bool Game::choosePiece(vector<int> &piecesRemaining) {
   string tempName;
   cin >> tempName;
   Piece *piece;
-  if (tempName == "Bomb" || piecesRemaining.at(0) > 0) {
+  if (tempName == "Bomb" && piecesRemaining.at(0) > 0) {
+    cout << "I chose bomb!" << endl;
     piece = new Bomb;
     piece->setSide(playerTurn);
     selectLocation(piece);
     piecesRemaining.at(0)--;
     return false;
-  } else if (tempName == "Marshall" || piecesRemaining.at(1) > 0) {
+  } else if (tempName == "Marshall" && piecesRemaining.at(1) > 0) {
     piece = new Marshall;
     piece->setSide(playerTurn);
     selectLocation(piece);
     piecesRemaining.at(1)--;
     return false;
-  } else if (tempName == "General" || piecesRemaining.at(2) > 0) {
+  } else if (tempName == "General" && piecesRemaining.at(2) > 0) {
     piece = new General;
     piece->setSide(playerTurn);
     selectLocation(piece);
     piecesRemaining.at(2)--;
     return false;
-  } else if (tempName == "Colonel" || piecesRemaining.at(3) > 0) {
+  } else if (tempName == "Colonel" && piecesRemaining.at(3) > 0) {
     piece = new Colonel;
     piece->setSide(playerTurn);
     selectLocation(piece);
     piecesRemaining.at(3)--;
     return false;
-  } else if (tempName == "Major" || piecesRemaining.at(4) > 0) {
+  } else if (tempName == "Major" && piecesRemaining.at(4) > 0) {
     piece = new Major;
     piece->setSide(playerTurn);
     selectLocation(piece);
     piecesRemaining.at(4)--;
     return false;
-  } else if (tempName == "Captain" || piecesRemaining.at(5) > 0) {
+  } else if (tempName == "Captain" && piecesRemaining.at(5) > 0) {
     piece = new Captain;
     piece->setSide(playerTurn);
     selectLocation(piece);
     piecesRemaining.at(5)--;
     return false;
-  } else if (tempName == "Lieutenant" || piecesRemaining.at(6) > 0) {
+  } else if (tempName == "Lieutenant" && piecesRemaining.at(6) > 0) {
     piece = new Lieutenant;
     piece->setSide(playerTurn);
     selectLocation(piece);
     piecesRemaining.at(6)--;
     return false;
-  } else if (tempName == "Sergeant" || piecesRemaining.at(7) > 0) {
+  } else if (tempName == "Sergeant" && piecesRemaining.at(7) > 0) {
     piece = new Sergeant;
     piece->setSide(playerTurn);
     selectLocation(piece);
     piecesRemaining.at(7)--;
     return false;
-  } else if (tempName == "Miner" || piecesRemaining.at(8) > 0) {
+  } else if (tempName == "Miner" && piecesRemaining.at(8) > 0) {
     piece = new Miner;
     piece->setSide(playerTurn);
     selectLocation(piece);
     piecesRemaining.at(8)--;
     return false;
-  } else if (tempName == "Scout" || piecesRemaining.at(9) > 0) {
+  } else if (tempName == "Scout" && piecesRemaining.at(9) > 0) {
     piece = new Scout;
     piece->setSide(playerTurn);
     selectLocation(piece);
     piecesRemaining.at(9)--;
     return false;
-  } else if (tempName == "Spy" || piecesRemaining.at(10) > 0) {
+  } else if (tempName == "Spy" && piecesRemaining.at(10) > 0) {
     piece = new Spy;
     piece->setSide(playerTurn);
     selectLocation(piece);
     piecesRemaining.at(10)--;
     return false;
-  } else if (tempName == "Flag" || piecesRemaining.at(11) > 0) {
+  } else if (tempName == "Flag" && piecesRemaining.at(11) > 0) {
     piece = new Flag;
     piece->setSide(playerTurn);
     selectLocation(piece);

@@ -22,13 +22,14 @@ void Board::printBoard() {
   cout << "==================================\n";
   cout << "            || BLUE ||\n" << endl;
 }
+// added another check so it prints rivers -CM
 void Board::printBlue() {
   cout << endl << "             || RED ||\n";
   cout << "==================================\n";
   for (int i = 0; i < 10; i++) {
     cout << "| ";
     for (int j = 0; j < 10; j++) {
-      if (Pieces[i][j]->getSide() == 1) {
+      if (Pieces[i][j]->getSide() == 1 | Pieces[i][j]->getRank()==-1) { 
         cout << "[" << Pieces[i][j]->getSymbol() << "]";
       } else {
         cout << "[" << '?' << "]";
@@ -79,13 +80,13 @@ bool Board::validateSelection(int x, int y, bool playerTurn) {
 // Validate movement still needs to check if a place on the board is occupied by another piece
 bool Board::validatePlacement(int x, int y, bool playerTurn) {
   if (playerTurn) { // blue
-    if (x >= 0 || y >= 6 || x <= 9 || y <= 9) {
+    if (x >= 0 && y >= 6 && x <= 9 && y <= 9) {
       return true;
     } else {
       return false;
     }
   } else { // red
-    if (x >= 0 || y >= 0 || x <= 9 || y <= 3) {
+    if (x >= 0 && y >= 0 && x <= 9 && y <= 3) {
       return true;
     } else {
       return false;

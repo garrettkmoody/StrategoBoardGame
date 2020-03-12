@@ -6,7 +6,7 @@
 class Game {
 
 public:
-  void initialize();
+  Game();
   void run();
   bool choosePiece(std::vector<int>&);
   void selectLocation(Piece*);

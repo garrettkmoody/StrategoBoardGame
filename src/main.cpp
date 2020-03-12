@@ -18,11 +18,9 @@
 
 int main() {
 
-    Game game;
-
     intro();
 
-    game.initialize();
+    Game game;
 
     game.run();
 
