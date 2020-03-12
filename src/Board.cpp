@@ -2,14 +2,13 @@
 #include <cstdlib>
 #include <iostream>
 
-//the board still lets you place pieces outside of the board, and always places a bomb. 
-//the count of pieces also doesnt seem to update
-
 using namespace std;
+
 //Blue is 1 red is 0;
 // Keep in mind to consider Blue to be natural bottom of the board.
 // 2d array is [rows][columns] or [y][x]
 // i is row j is column.
+
 void Board::printBoard() {
   cout << endl << "             || RED ||\n";
   cout << "==================================\n";
@@ -23,14 +22,16 @@ void Board::printBoard() {
   cout << "==================================\n";
   cout << "            || BLUE ||\n" << endl;
 }
+
 // added another check so it prints rivers -CM
+
 void Board::printBlue() {
   cout << endl << "             || RED ||\n";
   cout << "==================================\n";
   for (int i = 0; i < 10; i++) {
     cout << "| ";
     for (int j = 0; j < 10; j++) {
-      if (Pieces[i][j]->getSide() == 1 | Pieces[i][j]->getRank()==-1) { 
+      if (Pieces[i][j]->getSide() == 1 || Pieces[i][j]->getRank()==-1) { 
         cout << "[" << Pieces[i][j]->getSymbol() << "]";
       } else {
         cout << "[" << '?' << "]";
@@ -46,6 +47,7 @@ void Board::printRed() {}
 
 // note that validateMovement needs to consider the movement abilities of the
 // piece in question.
+
 bool Board::validateMovement(Piece *piece, int x, int y, int movement,
                              bool playerTurn) {
   if ((!(abs(piece->getX() - x) <= movement && abs(piece->getY() - y) == 0) &&
@@ -65,6 +67,7 @@ bool Board::validateMovement(Piece *piece, int x, int y, int movement,
 
 bool Board::validateSelection(int x, int y, bool playerTurn) {
   if (x < 0 || y < 0 || x > 9 || y > 9) {
+    cout << "This location isn't on the board." << endl;
     return false;
   } else if (Pieces[y][x]->getMovement() == 0 ||
              playerTurn != Pieces[y][x]->getSide()) {
@@ -75,7 +78,6 @@ bool Board::validateSelection(int x, int y, bool playerTurn) {
   }
 }
 
-//DONE
 bool Board::validatePlacement(int x, int y, bool playerTurn) {
   if (playerTurn) { // blue
     if (x >= 0 && y >= 6 && x <= 9 && y <= 9) {
@@ -94,6 +96,7 @@ bool Board::validatePlacement(int x, int y, bool playerTurn) {
 
 // Blue is 1, Red is 0.
 // FROM GARRETT: I changed the name of the array to "Pieces" instead of "Piece"
+
 Piece *Board::selectPiece(int x, int y, bool playerTurn) {
   Piece *piece;
   do {
@@ -108,6 +111,7 @@ Piece *Board::selectPiece(int x, int y, bool playerTurn) {
   } while (!validateSelection(x, y, piece->getMovement()));
   return piece;
 }
+
 // doesn't look like x or y is passed by reference and since you don't set x
 // or y of piece how does this affect the piece's location.
 // Also, you need to consider things like the scout's movement ability, which
@@ -115,14 +119,20 @@ Piece *Board::selectPiece(int x, int y, bool playerTurn) {
 // you do move in that direction you need to do a loop and "move" it through
 // every space to make sure there isn't anything in the way.-CM
 
-
+// THE PLAN
+//=================================
 // select direction
-// if scout 
+// if movement > 1 enter a distance
+// validate movement
+// if there is an enemy piece in the new location, fight.
+// else move to location.
+// replace old location with nopiece.
+
 void Board::move(Piece *piece, int x, int y, bool playerTurn) {
   if (validateMovement(piece, x, y, piece->getMovement(), playerTurn)) {
   }
 }
-// DONE
+
 void Board::place(Piece *piece) {
   Pieces[piece->getY()][piece->getX()] = piece;
 }
