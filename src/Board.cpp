@@ -4,7 +4,7 @@
 
 using namespace std;
 
-//Blue is 1 red is 0;
+// Blue is 1 red is 0;
 // Keep in mind to consider Blue to be natural bottom of the board.
 // 2d array is [rows][columns] or [y][x]
 // i is row j is column.
@@ -31,7 +31,7 @@ void Board::printBlue() {
   for (int i = 0; i < 10; i++) {
     cout << "| ";
     for (int j = 0; j < 10; j++) {
-      if (Pieces[i][j]->getSide() == 1 || Pieces[i][j]->getRank()==-1) { 
+      if (Pieces[i][j]->getSide() == 1 || Pieces[i][j]->getRank() == -1) {
         cout << "[" << Pieces[i][j]->getSymbol() << "]";
       } else {
         cout << "[" << '?' << "]";
@@ -43,12 +43,28 @@ void Board::printBlue() {
   cout << "            || BLUE ||\n" << endl;
 }
 
-void Board::printRed() {}
+void Board::printRed() {
+  cout << endl << "             || BLUE ||\n";
+  cout << "==================================\n";
+  for (int i = 9; i >= 0; i--) {
+    cout << "| ";
+    for (int j = 9; j >= 0; j--) {
+      if (Pieces[i][j]->getSide() == 0 || Pieces[i][j]->getRank() == -1) {
+        cout << "[" << Pieces[i][j]->getSymbol() << "]";
+      } else {
+        cout << "[" << '?' << "]";
+      }
+    }
+    cout << " |" << endl;
+  }
+  cout << "==================================\n";
+  cout << "            || RED ||\n" << endl;
+}
 
 // note that validateMovement needs to consider the movement abilities of the
 // piece in question. We need to have seperate else ifs for x and y restrictions
-// else it will return junk when we call the board to check if the end location is
-// a river or an ally.
+// else it will return junk when we call the board to check if the end location
+// is a river or an ally.
 
 bool Board::validateMovement(Piece *piece, int x, int y, int movement,
                              bool playerTurn) {
@@ -57,10 +73,9 @@ bool Board::validateMovement(Piece *piece, int x, int y, int movement,
     return false;
   } else if (x < 0 || y < 0 || x > 9 || y > 9) {
     return false;
-  }
-  else if (Pieces[y][x]->getName() == "River" ||
-	  playerTurn == Pieces[y][x]->getSide()) {
-	  return false;
+  } else if (Pieces[y][x]->getName() == "River" ||
+             playerTurn == Pieces[y][x]->getSide()) {
+    return false;
   } else {
     return true;
   }
@@ -133,15 +148,15 @@ Piece *Board::selectPiece(int x, int y, bool playerTurn) {
 // replace old location with nopiece.
 
 void Board::move(Piece *piece, int x, int y, bool playerTurn) {
-    char direction;
-    cout << "what direction(wasd) would you like to move the piece: ";
-    cin >> direction;
-    // switch statement
-    if (piece->getMovement()> 1) {
-        int distance;
-        cout << "What distance would you like to move this piece: ";
-        cin >> distance;
-    }
+  char direction;
+  cout << "what direction(wasd) would you like to move the piece: ";
+  cin >> direction;
+  // switch statement
+  if (piece->getMovement() > 1) {
+    int distance;
+    cout << "What distance would you like to move this piece: ";
+    cin >> distance;
+  }
   if (validateMovement(piece, x, y, piece->getMovement(), playerTurn)) {
   }
 }
