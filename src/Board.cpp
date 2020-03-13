@@ -60,7 +60,7 @@ bool Board::validateMovement(Piece *piece, int x, int y, int movement,
   }
   else if (Pieces[y][x]->getName() == "River" ||
 	  playerTurn == Pieces[y][x]->getSide()) {
-	  return false
+	  return false;
   } else {
     return true;
   }
