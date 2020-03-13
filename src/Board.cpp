@@ -137,6 +137,11 @@ void Board::move(Piece *piece, int x, int y, bool playerTurn) {
     cout << "what direction(wasd) would you like to move the piece: ";
     cin >> direction;
     // switch statement
+    if (piece->getMovement()> 1) {
+        int distance;
+        cout << "What distance would you like to move this piece: ";
+        cin >> distance;
+    }
   if (validateMovement(piece, x, y, piece->getMovement(), playerTurn)) {
   }
 }

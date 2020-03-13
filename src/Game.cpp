@@ -45,7 +45,7 @@ Game::Game() {
 void Game::printRemaining(std::vector<int> piecesRemaining) {
 cout << endl << "\tLeft to place: " << endl;
     cout << "Bomb: " << piecesRemaining.at(0)
-         << "\t\tMarshall: " << piecesRemaining.at(1)
+         << "\t\t\tMarshall: " << piecesRemaining.at(1)
          << "\t\tGeneral: " << piecesRemaining.at(2) << endl;
     cout << "Colonel: " << piecesRemaining.at(3)
          << "\t\tMajor: " << piecesRemaining.at(4)
@@ -55,7 +55,7 @@ cout << endl << "\tLeft to place: " << endl;
          << "\t\tMiner: " << piecesRemaining.at(8) << endl;
     cout << "Scout: " << piecesRemaining.at(9)
          << "\t\tSpy: " << piecesRemaining.at(10)
-         << "\t\tFlag: " << piecesRemaining.at(11) << endl;
+         << "\t\t\tFlag: " << piecesRemaining.at(11) << endl;
 }
 
 bool Game::choosePiece(vector<int> &piecesRemaining) {
@@ -76,7 +76,6 @@ bool Game::choosePiece(vector<int> &piecesRemaining) {
 
   Piece *piece;
   if (tempName == "Bomb" && piecesRemaining.at(0) > 0) {
-    cout << "I chose bomb!" << endl;
     piece = new Bomb;
     piece->setSide(playerTurn);
     selectLocation(piece);
