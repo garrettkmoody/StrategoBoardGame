@@ -27,8 +27,8 @@ Game::Game() {
 
     playerTurn = false;
 
-    // board.printRed();
-    board.printBoard();
+     board.printRed();
+    //board.printBoard();
     printRemaining(piecesRemainingR);
 
     check1 = true;
