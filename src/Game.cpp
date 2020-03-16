@@ -231,7 +231,12 @@ void Game::run() {
     // playerTurn);
 
     board.move(piecePtr, xMove, yMove, playerTurn);
-
+    
+    if (playerTurn == true) {
+        playerTurn = false;
+    } else {
+        playerTurn = true;
+    }
     cout << "\033[2J\033[1;1H";
 
   } while (continueGame);
