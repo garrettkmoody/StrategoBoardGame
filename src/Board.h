@@ -34,7 +34,7 @@ public:
 
   bool validatePlacement(int x, int y, bool playerTurn);
 
-  bool validateMovement(Piece * piece, int x, int y, int movement, bool playerTurn);
+  bool validateMovement(Piece * piece, int x, int y, bool playerTurn);
 
   bool resolveAttack(Piece* piece, int x, int y);
 

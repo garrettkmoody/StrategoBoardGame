@@ -194,60 +194,64 @@ void Board::move(Piece *piece, int x, int y, bool playerTurn) {
 
   switch (direction) {
   case 'w': {
-	  if (validateMovement(piece, piece->getX(), piece->getY() + distance, piece->getSide()) {
+	  if (validateMovement(piece, piece->getX(), piece->getY() + distance, piece->getSide())) {
 		  cout << "Invalid move" << endl;
 	  }
 	  else if (resolveAttack(piece, piece->getX(), piece->getY() + distance)) {
 		  cout << "Your " << piece->getName() << " threw himself valliantly against the enemy " << Pieces[piece->getY() + distance][piece->getX()]->getName() << "."<< endl;
-		  Piece[piece->getY()][piece->getX()] = new Nopiece();
+          /*Piece *tempNoPiece;
+          tempNoPiece = new Nopiece;
+          tempNoPiece->setX(piece->getX()); 
+          tempNoPiece->setY(piece->getY());*/
+		  Pieces[piece->getY()][piece->getX()] = new Nopiece;
 	  }
 	  else {
-		  Pieces[piece->getY()][piece->getX()] = new Nopiece();
+		  Pieces[piece->getY()][piece->getX()] = new Nopiece;
 		  piece->setX(piece->getX());
 		  piece->setY(piece->getY() + distance);
 		  Pieces[piece->getY()][piece->getX()] = piece;
 	  }
   }; break;
   case 's': {
-	  if (validateMovement(piece, piece->getX(), piece->getY() - distance, piece->getSide()) {
+	  if (validateMovement(piece, piece->getX(), piece->getY() - distance, piece->getSide())) {
 		cout << "Invalid move" << endl;
 	  }
 	  else if (resolveAttack(piece, piece->getX(), piece->getY() - distance)) {
 		  cout << "Your " << piece->getName() << " threw himself valliantly against the enemy " << Pieces[piece->getY() - distance][piece->getX()]->getName() << "." << endl;
-		  Piece[piece->getY()][piece->getX()] = new Nopiece();
+		  Pieces[piece->getY()][piece->getX()] = new Nopiece;
 	  }
 	  else {
-		  Pieces[piece->getY()][piece->getX()] = new Nopiece();
+		  Pieces[piece->getY()][piece->getX()] = new Nopiece;
 		  piece->setX(piece->getX());
 		  piece->setY(piece->getY() - distance);
 		  Pieces[piece->getY()][piece->getX()] = piece;
 	  }
   }; break;
   case 'd': {
-	  if (validateMovement(piece, piece->getX() + distance, piece->getY(), piece->getSide()) {
+	  if (validateMovement(piece, piece->getX() + distance, piece->getY(), piece->getSide())) {
 		  cout << "Invalid move" << endl;
 	  }
 	  else if (resolveAttack(piece, piece->getX() + distance, piece->getY())) {
 		  cout << "Your " << piece->getName() << " threw himself valliantly against the enemy " << Pieces[piece->getY()][piece->getX() + distance]->getName() << "." << endl;
-			  Piece[piece->getY()][piece->getX()] = new Nopiece();
+			  Pieces[piece->getY()][piece->getX()] = new Nopiece;
 	  }
 	  else {
-		  Pieces[piece->getY()][piece->getX()] = new Nopiece();
+		  Pieces[piece->getY()][piece->getX()] = new Nopiece;
 			  piece->setX(piece->getX() + distance);
 			  piece->setY(piece->getY());
 			  Pieces[piece->getY()][piece->getX()] = piece;
 	  }
   }; break;
   case 'a': {
-	  if (validateMovement(piece, piece->getX() - distance, piece->getY(), piece->getSide()) {
+	  if (validateMovement(piece, piece->getX() - distance, piece->getY(), piece->getSide())) {
 		  cout << "Invalid move" << endl;
 	  }
 	  else if (resolveAttack(piece, piece->getX() - distance, piece->getY())) {
 		  cout << "Your " << piece->getName() << " threw himself valliantly against the enemy " << Pieces[piece->getY()][piece->getX() - distance]->getName() << "." << endl;
-			  Piece[piece->getY()][piece->getX()] = new Nopiece();
+			  Pieces[piece->getY()][piece->getX()] = new Nopiece;
 	  }
 	  else {
-		  Pieces[piece->getY()][piece->getX()] = new Nopiece();
+		  Pieces[piece->getY()][piece->getX()] = new Nopiece;
 			  piece->setX(piece->getX() - distance);
 			  piece->setY(piece->getY());
 			  Pieces[piece->getY()][piece->getX()] = piece;
