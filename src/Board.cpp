@@ -194,7 +194,7 @@ void Board::move(Piece *piece, int x, int y, bool playerTurn) {
 
   switch (direction) {
   case 'w': {
-	  if (!validateMovement(piece, piece->getX(), piece->getY() + distance, piece->getSide()) {
+	  if (validateMovement(piece, piece->getX(), piece->getY() + distance, piece->getSide()) {
 		  cout << "Invalid move" << endl;
 	  }
 	  else if (resolveAttack(piece, piece->getX(), piece->getY() + distance)) {
@@ -209,7 +209,7 @@ void Board::move(Piece *piece, int x, int y, bool playerTurn) {
 	  }
   }; break;
   case 's': {
-	  if (!validateMovement(piece, piece->getX(), piece->getY() - distance, piece->getSide()) {
+	  if (validateMovement(piece, piece->getX(), piece->getY() - distance, piece->getSide()) {
 		cout << "Invalid move" << endl;
 	  }
 	  else if (resolveAttack(piece, piece->getX(), piece->getY() - distance)) {
@@ -224,7 +224,7 @@ void Board::move(Piece *piece, int x, int y, bool playerTurn) {
 	  }
   }; break;
   case 'd': {
-	  if (!validateMovement(piece, piece->getX() + distance, piece->getY(), piece->getSide()) {
+	  if (validateMovement(piece, piece->getX() + distance, piece->getY(), piece->getSide()) {
 		  cout << "Invalid move" << endl;
 	  }
 	  else if (resolveAttack(piece, piece->getX() + distance, piece->getY())) {
@@ -239,7 +239,7 @@ void Board::move(Piece *piece, int x, int y, bool playerTurn) {
 	  }
   }; break;
   case 'a': {
-	  if (!validateMovement(piece, piece->getX() - distance, piece->getY(), piece->getSide()) {
+	  if (validateMovement(piece, piece->getX() - distance, piece->getY(), piece->getSide()) {
 		  cout << "Invalid move" << endl;
 	  }
 	  else if (resolveAttack(piece, piece->getX() - distance, piece->getY())) {
