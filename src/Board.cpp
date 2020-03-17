@@ -79,12 +79,12 @@ void Board::printRed() {
 
 bool Board::validateMovement(Piece *piece, int x, int y, bool playerTurn) {
   if (x < 0 || x > 9 || y < 0 || y > 9) {
-    return false;
+    return true;
   } else if (Pieces[y][x]->getName() == "River" ||
 	  (playerTurn == Pieces[y][x]->getSide() && Pieces[y][x]->getName() != "Empty")) {
-    return false;
-  } else {
     return true;
+  } else {
+    return false;
   }
 }
 
@@ -118,6 +118,24 @@ bool Board::validatePlacement(int x, int y, bool playerTurn) {
       return false;
     }
   }
+}
+
+bool Board::resolveAttack(Piece* piece, int x, int y) {
+	bool isSpy = (piece->getName() == "Spy");
+	bool isMiner = (piece->getName() == "Miner");
+	bool isMarshall = (Pieces[y][x]->getName() == "Marshall");
+	bool isBomb = (Pieces[y][x]->getName() == "Bomb");
+
+	if (Pieces[y][x]->getRank() > piece->getRank()) {
+		return true;
+	}
+	else if (isSpy && isMarshall) {
+		return true;
+	}
+	else if (isMiner && isBomb) {
+		return true;
+	}
+	return false;
 }
 
 // Blue is 1, Red is 0.
@@ -179,7 +197,7 @@ void Board::move(Piece *piece, int x, int y, bool playerTurn) {
 	  if (validateMovement(piece, piece->getX(), piece->getY() + distance, piece->getSide()) {
 		  cout << "Invalid move" << endl;
 	  }
-	  else if (Pieces[piece->getY() + distance][piece->getX()]->getRank() > piece->getRank() && piece->getRank() != 1 && Pieces[piece->getY() + distance][piece->getX()]->getRank() != 10) {
+	  else if (resolveAttack(piece, piece->getX(), piece->getY() + distance)) {
 		  cout << "Your " << piece->getName() << " threw himself valliantly against the enemy " << Pieces[piece->getY() + distance][piece->getX()]->getName() << "."<< endl;
 		  Piece[piece->getY()][piece->getX()] = new Nopiece();
 	  }
@@ -194,7 +212,7 @@ void Board::move(Piece *piece, int x, int y, bool playerTurn) {
 	  if (validateMovement(piece, piece->getX(), piece->getY() - distance, piece->getSide()) {
 		cout << "Invalid move" << endl;
 	  }
-	  else if (Pieces[piece->getY() - distance][piece->getX()]->getRank() > piece->getRank() && piece->getRank() != 1 && Pieces[piece->getY() - distance][piece->getX()]->getRank() != 10) {
+	  else if (resolveAttack(piece, piece->getX(), piece->getY() - distance)) {
 		  cout << "Your " << piece->getName() << " threw himself valliantly against the enemy " << Pieces[piece->getY() - distance][piece->getX()]->getName() << "." << endl;
 		  Piece[piece->getY()][piece->getX()] = new Nopiece();
 	  }
@@ -209,7 +227,7 @@ void Board::move(Piece *piece, int x, int y, bool playerTurn) {
 	  if (validateMovement(piece, piece->getX() + distance, piece->getY(), piece->getSide()) {
 		  cout << "Invalid move" << endl;
 	  }
-	  else if (Pieces[piece->getY()][piece->getX() + distance]->getRank() > piece->getRank() && piece->getRank() != 1 && Pieces[piece->getY()][piece->getX() + distance]->getRank() != 10) {
+	  else if (resolveAttack(piece, piece->getX() + distance, piece->getY())) {
 		  cout << "Your " << piece->getName() << " threw himself valliantly against the enemy " << Pieces[piece->getY()][piece->getX() + distance]->getName() << "." << endl;
 			  Piece[piece->getY()][piece->getX()] = new Nopiece();
 	  }
@@ -224,7 +242,7 @@ void Board::move(Piece *piece, int x, int y, bool playerTurn) {
 	  if (validateMovement(piece, piece->getX() - distance, piece->getY(), piece->getSide()) {
 		  cout << "Invalid move" << endl;
 	  }
-	  else if (Pieces[piece->getY()][piece->getX() - distance]->getRank() > piece->getRank() && piece->getRank() != 1 && Pieces[piece->getY()][piece->getX() - distance]->getRank() != 10) {
+	  else if (resolveAttack(piece, piece->getX() - distance, piece->getY())) {
 		  cout << "Your " << piece->getName() << " threw himself valliantly against the enemy " << Pieces[piece->getY()][piece->getX() - distance]->getName() << "." << endl;
 			  Piece[piece->getY()][piece->getX()] = new Nopiece();
 	  }

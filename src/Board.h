@@ -36,6 +36,8 @@ public:
 
   bool validateMovement(Piece * piece, int x, int y, int movement, bool playerTurn);
 
+  bool resolveAttack(Piece* piece, int x, int y);
+
   void printBoard();
 
   void printBlue();
