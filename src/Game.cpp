@@ -229,8 +229,12 @@ do {
 } while (!board.validateSelection(xCoord, yCoord, playerTurn));
     // board.validateMovement(piecePtr, xMove, yMove, piecePtr->getMovement(),
     // playerTurn);
-
-    board.move(piecePtr, xMove, yMove, playerTurn);
+while (true) {
+	if (board.move(piecePtr)) {
+		break;
+	}
+}
+    
 
     if (playerTurn == true) {
         playerTurn = false;
