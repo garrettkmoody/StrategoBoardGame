@@ -213,7 +213,7 @@ void Game::run() {
         board.printRed();
         playerTurn = true;
     }*/
-
+do {
     board.printBoard();
     cout << "Select the piece you would like to move: " << endl;
     cout << "x: ";
@@ -226,12 +226,12 @@ void Game::run() {
     // board.validateSelection(xCoord, yCoord, playerTurn);
 
     piecePtr = board.selectPiece(xCoord, yCoord, playerTurn);
-
+} while (!board.validateSelection(xCoord, yCoord, playerTurn));
     // board.validateMovement(piecePtr, xMove, yMove, piecePtr->getMovement(),
     // playerTurn);
 
     board.move(piecePtr, xMove, yMove, playerTurn);
-    
+
     if (playerTurn == true) {
         playerTurn = false;
     } else {
