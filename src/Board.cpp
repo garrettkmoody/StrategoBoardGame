@@ -77,15 +77,11 @@ void Board::printRed() {
 // else it will return junk when we call the board to check if the end location
 // is a river or an ally.
 
-bool Board::validateMovement(Piece *piece, int x, int y, int movement,
-                             bool playerTurn) {
-  if ((!(abs(piece->getX() - x) <= movement && abs(piece->getY() - y) == 0) &&
-       !(abs(piece->getY() - y) <= movement && abs(piece->getX() - x) == 0))) {
-    return false;
-  } else if (x < 0 || y < 0 || x > 9 || y > 9) {
+bool Board::validateMovement(Piece *piece, int x, int y, bool playerTurn) {
+  if (x < 0 || x > 9 || y < 0 || y > 9) {
     return false;
   } else if (Pieces[y][x]->getName() == "River" ||
-             playerTurn == Pieces[y][x]->getSide()) {
+	  (playerTurn == Pieces[y][x]->getSide() && Pieces[y][x]->getName() != "Empty")) {
     return false;
   } else {
     return true;
@@ -158,18 +154,92 @@ Piece *Board::selectPiece(int x, int y, bool playerTurn) {
 // else move to location.
 // replace old location with nopiece.
 
+
 void Board::move(Piece *piece, int x, int y, bool playerTurn) {
   char direction;
+  int distance;
   cout << "what direction(wasd) would you like to move the piece: ";
   cin >> direction;
-  // switch statement
-  if (piece->getMovement() > 1) {
-    int distance;
-    cout << "What distance would you like to move this piece: ";
-    cin >> distance;
+
+  while(true) {
+	  if (piece->getMovement() > 1) {
+		  cout << "What distance would you like to move this piece: ";
+		  cin >> distance;
+		  if (distance <= piece->getMovement()) {
+			  break;
+		  }
+		  else {
+			  cout << "You can't move that far." << endl;
+		  }
+	  }
   }
-  if (validateMovement(piece, x, y, piece->getMovement(), playerTurn)) {
+
+  switch (direction) {
+  case 'w': {
+	  if (validateMovement(piece, piece->getX(), piece->getY() + distance, piece->getSide()) {
+		  cout << "Invalid move" << endl;
+	  }
+	  else if (Pieces[piece->getY() + distance][piece->getX()]->getRank() > piece->getRank() && piece->getRank() != 1 && Pieces[piece->getY() + distance][piece->getX()]->getRank() != 10) {
+		  cout << "Your " << piece->getName() << " threw himself valliantly against the enemy " << Pieces[piece->getY() + distance][piece->getX()]->getName() << "."<< endl;
+		  Piece[piece->getY()][piece->getX()] = new Nopiece();
+	  }
+	  else {
+		  Pieces[piece->getY()][piece->getX()] = new Nopiece();
+		  piece->setX(piece->getX());
+		  piece->setY(piece->getY() + distance);
+		  Pieces[piece->getY()][piece->getX()] = piece;
+	  }
+  }; break;
+  case 's': {
+	  if (validateMovement(piece, piece->getX(), piece->getY() - distance, piece->getSide()) {
+		cout << "Invalid move" << endl;
+	  }
+	  else if (Pieces[piece->getY() - distance][piece->getX()]->getRank() > piece->getRank() && piece->getRank() != 1 && Pieces[piece->getY() - distance][piece->getX()]->getRank() != 10) {
+		  cout << "Your " << piece->getName() << " threw himself valliantly against the enemy " << Pieces[piece->getY() - distance][piece->getX()]->getName() << "." << endl;
+		  Piece[piece->getY()][piece->getX()] = new Nopiece();
+	  }
+	  else {
+		  Pieces[piece->getY()][piece->getX()] = new Nopiece();
+		  piece->setX(piece->getX());
+		  piece->setY(piece->getY() - distance);
+		  Pieces[piece->getY()][piece->getX()] = piece;
+	  }
+  }; break;
+  case 'd': {
+	  if (validateMovement(piece, piece->getX() + distance, piece->getY(), piece->getSide()) {
+		  cout << "Invalid move" << endl;
+	  }
+	  else if (Pieces[piece->getY()][piece->getX() + distance]->getRank() > piece->getRank() && piece->getRank() != 1 && Pieces[piece->getY()][piece->getX() + distance]->getRank() != 10) {
+		  cout << "Your " << piece->getName() << " threw himself valliantly against the enemy " << Pieces[piece->getY()][piece->getX() + distance]->getName() << "." << endl;
+			  Piece[piece->getY()][piece->getX()] = new Nopiece();
+	  }
+	  else {
+		  Pieces[piece->getY()][piece->getX()] = new Nopiece();
+			  piece->setX(piece->getX() + distance);
+			  piece->setY(piece->getY());
+			  Pieces[piece->getY()][piece->getX()] = piece;
+	  }
+  }; break;
+  case 'a': {
+	  if (validateMovement(piece, piece->getX() - distance, piece->getY(), piece->getSide()) {
+		  cout << "Invalid move" << endl;
+	  }
+	  else if (Pieces[piece->getY()][piece->getX() - distance]->getRank() > piece->getRank() && piece->getRank() != 1 && Pieces[piece->getY()][piece->getX() - distance]->getRank() != 10) {
+		  cout << "Your " << piece->getName() << " threw himself valliantly against the enemy " << Pieces[piece->getY()][piece->getX() - distance]->getName() << "." << endl;
+			  Piece[piece->getY()][piece->getX()] = new Nopiece();
+	  }
+	  else {
+		  Pieces[piece->getY()][piece->getX()] = new Nopiece();
+			  piece->setX(piece->getX() - distance);
+			  piece->setY(piece->getY());
+			  Pieces[piece->getY()][piece->getX()] = piece;
+	  }
+  }; break;
+  default: {
+	  cout << "Invalid move" << endl;
   }
+  }
+  
 }
 
 void Board::place(Piece *piece) {
