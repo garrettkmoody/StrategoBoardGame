@@ -106,13 +106,13 @@ bool Board::validateSelection(int x, int y, bool playerTurn) {
 
 bool Board::validatePlacement(int x, int y, bool playerTurn) {
   if (playerTurn) { // blue
-    if (x >= 0 && y >= 6 && x <= 9 && y <= 9) {
+    if (x >= 0 && y >= 6 && x <= 9 && y <= 9 && Pieces[y][x]->getRank() < 0) {
       return true;
     } else {
       return false;
     }
   } else { // red
-    if (x >= 0 && y >= 0 && x <= 9 && y <= 3) {
+    if (x >= 0 && y >= 0 && x <= 9 && y <= 3 && Pieces[y][x]->getRank() < 0) {
       return true;
     } else {
       return false;

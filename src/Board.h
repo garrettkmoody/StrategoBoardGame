@@ -3,12 +3,9 @@
 #include "Piece.h"
 #include <iostream>
 
-
 class Board {
 private:
-  Piece* Pieces[10][10];
-
-  
+  Piece *Pieces[10][10];
 
 public:
   // Make a note with your name next to functions you will work on
@@ -28,15 +25,15 @@ public:
     Pieces[5][7] = new River();
   }
 
-  Piece* selectPiece(int x, int y, bool playerTurn);
+  Piece *selectPiece(int x, int y, bool playerTurn);
 
   bool validateSelection(int x, int y, bool playerTurn);
 
   bool validatePlacement(int x, int y, bool playerTurn);
 
-  bool validateMovement(Piece * piece, int x, int y, bool playerTurn);
+  bool validateMovement(Piece *piece, int x, int y, bool playerTurn);
 
-  bool resolveAttack(Piece* piece, int x, int y);
+  bool resolveAttack(Piece *piece, int x, int y);
 
   void printBoard();
 
@@ -44,9 +41,9 @@ public:
 
   void printRed();
 
-  void move(Piece* piece, int x, int y, bool playerTurn);
+  void move(Piece *piece, int x, int y, bool playerTurn);
 
-  void place(Piece* piece);
+  void place(Piece *piece);
 };
 
 #endif

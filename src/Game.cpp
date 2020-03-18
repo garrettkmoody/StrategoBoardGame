@@ -185,6 +185,8 @@ void Game::selectLocation(Piece *piece) {
             improperEntry = false;
         }
     } while(improperEntry);
+    x--;
+    y--;
     if (board.validatePlacement(x, y, playerTurn)) {
       piece->setX(x);
       piece->setY(y);
