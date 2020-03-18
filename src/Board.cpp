@@ -201,7 +201,9 @@ bool Board::move(Piece *piece) {
           check1 = false;
       }
   }
-
+    if (piece->getSide()==1) {
+        distance = distance*=-1;
+    }
   switch (direction) {
   case 'w': {
 	  if (!validateMovement(piece, piece->getX(), piece->getY() + distance, piece->getSide())) {
@@ -242,7 +244,7 @@ bool Board::move(Piece *piece) {
 	  }
   }; break;
   case 'd': {
-	  if (!validateMovement(piece, piece->getX() + distance, piece->getY(), piece->getSide())) {
+	  if (!validateMovement(piece, piece->getX() - distance, piece->getY(), piece->getSide())) {
 		  cout << "Invalid move" << endl;
 		  return false;
 	  }
@@ -261,7 +263,7 @@ bool Board::move(Piece *piece) {
 	  }
   }; break;
   case 'a': {
-	  if (!validateMovement(piece, piece->getX() - distance, piece->getY(), piece->getSide())) {
+	  if (!validateMovement(piece, piece->getX() + distance, piece->getY(), piece->getSide())) {
 		  cout << "Invalid move" << endl;
    		  return false;
 	  }
