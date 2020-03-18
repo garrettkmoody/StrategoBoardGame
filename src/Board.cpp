@@ -217,7 +217,7 @@ bool Board::move(Piece *piece) {
 	  }
 	  else {
 		  Pieces[piece->getY()][piece->getX()] = new Nopiece;
-		  cout << "Your " << piece->getName() << " destroyed the enemy " << Pieces[piece->getY() - distance][piece->getX()]->getName() << "." << endl;
+		  cout << "Your " << piece->getName() << " destroyed the enemy " << Pieces[piece->getY() + distance][piece->getX()]->getName() << "." << endl;
 		  piece->setX(piece->getX());
 		  piece->setY(piece->getY() + distance);
 		  Pieces[piece->getY()][piece->getX()] = piece;
@@ -249,7 +249,7 @@ bool Board::move(Piece *piece) {
 		  return false;
 	  }
 	  else if (resolveAttack(piece, piece->getX() - distance, piece->getY())) {
-		  cout << "Your " << piece->getName() << " threw himself valliantly against the enemy " << Pieces[piece->getY()][piece->getX() + distance]->getName() << "." << endl;
+		  cout << "Your " << piece->getName() << " threw himself valliantly against the enemy " << Pieces[piece->getY()][piece->getX() - distance]->getName() << "." << endl;
 		  Pieces[piece->getY()][piece->getX()] = new Nopiece;
 		  return true;
 	  }
@@ -268,7 +268,7 @@ bool Board::move(Piece *piece) {
    		  return false;
 	  }
 	  else if (resolveAttack(piece, piece->getX() + distance, piece->getY())) {
-		  cout << "Your " << piece->getName() << " threw himself valliantly against the enemy " << Pieces[piece->getY()][piece->getX() - distance]->getName() << "." << endl;
+		  cout << "Your " << piece->getName() << " threw himself valliantly against the enemy " << Pieces[piece->getY()][piece->getX() + distance]->getName() << "." << endl;
 		  Pieces[piece->getY()][piece->getX()] = new Nopiece;
 		  return true;
 	  }
@@ -291,5 +291,4 @@ bool Board::move(Piece *piece) {
 
 void Board::place(Piece *piece) {
   Pieces[piece->getY()][piece->getX()] = piece;
-  cout << "I ran place" << endl;
 }
