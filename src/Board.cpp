@@ -148,9 +148,9 @@ Piece *Board::selectPiece(int x, int y, bool playerTurn) {
   Piece *piece;
   
     try {
-      if(Pieces[y][x]->getSide() == playerTurn) {
+      /* if(Pieces[y][x]->getSide() == playerTurn) {
           return 0;
-      }
+      }*/
       validateSelection(x, y, playerTurn);   
       piece = Pieces[y][x];
       piece->setY(y);
@@ -182,22 +182,23 @@ Piece *Board::selectPiece(int x, int y, bool playerTurn) {
 bool Board::move(Piece *piece) {
   char direction;
   int distance;
+  bool check1 = true;
   cout << "what direction(wasd) would you like to move the piece: ";
   cin >> direction;
 
-  while(true) {
+  while(check1) {
 	  if (piece->getMovement() > 1) {
 		  cout << "What distance would you like to move this piece: ";
 		  cin >> distance;
 		  if (distance <= piece->getMovement()) {
-			  break;
+			  check1 = false;
 		  }
 		  else {
 			  cout << "You can't move that far." << endl;
 		  }
 	  } else {
           distance = piece->getMovement();
-          break;
+          check1 = false;
       }
   }
 
