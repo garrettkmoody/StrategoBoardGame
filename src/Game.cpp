@@ -59,7 +59,7 @@ cout << endl << "\tLeft to place: " << endl;
 }
 
 bool Game::choosePiece(vector<int> &piecesRemaining) {
-  cout << "Enter the name of the string you would like to select: ";
+  cout << "Enter the name of the Piece you would like to select: ";
   string tempName;
   bool properInput = false;
   do {
@@ -159,7 +159,8 @@ bool Game::choosePiece(vector<int> &piecesRemaining) {
 void Game::selectLocation(Piece *piece) {
   int x, y;
   bool improperEntry = true;
-  do {
+  bool invalidPlacement = true;
+  while(invalidPlacement) {
     cout << "Select the location you would like to place your piece: " << endl;
     do {
     cout << "x: ";
@@ -191,10 +192,11 @@ void Game::selectLocation(Piece *piece) {
       piece->setX(x);
       piece->setY(y);
       board.place(piece);
+      invalidPlacement = false;
     } else {
       cout << "Invalid Location, please try again." << endl;
     }
-  } while (!board.validatePlacement(x, y, playerTurn));
+  }
 }
 
 void Game::run() {
