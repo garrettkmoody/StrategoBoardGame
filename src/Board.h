@@ -41,7 +41,7 @@ public:
 
   void printRed();
 
-  void move(Piece *piece, int x, int y, bool playerTurn);
+  bool move(Piece *piece);
 
   void place(Piece *piece);
 };
