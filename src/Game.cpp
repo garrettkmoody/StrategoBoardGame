@@ -202,7 +202,7 @@ void Game::selectLocation(Piece *piece) {
 void Game::run() {
   bool continueGame = true;
   do {
-
+    bool runAgain = 1;
     int xCoord = 0;
     int yCoord = 0;
     int xMove = 0;
@@ -218,12 +218,11 @@ void Game::run() {
         playerTurn = true;
     }*/
     do {
+    
       if (playerTurn == true) {
         board.printBlue();
-        playerTurn = false;
       } else {
         board.printRed();
-        playerTurn = true;
       }
       cout << "Select the piece you would like to move: " << endl;
       cout << "x: ";
@@ -232,11 +231,18 @@ void Game::run() {
       cin >> yCoord;
 
       // add selection validation
-
+    xCoord--;
+    yCoord--;
       // board.validateSelection(xCoord, yCoord, playerTurn);
-
-      piecePtr = board.selectPiece(xCoord, yCoord, playerTurn);
-    } while (!board.validateSelection(xCoord, yCoord, playerTurn));
+    try{
+        board.validateSelection(xCoord, yCoord, playerTurn);
+        piecePtr = board.selectPiece(xCoord, yCoord, playerTurn);
+        runAgain = 0;
+    }catch(runtime_error &except){
+        cout << except.what() << endl;
+    }
+      
+    } while (runAgain);
     // board.validateMovement(piecePtr, xMove, yMove, piecePtr->getMovement(),
     // playerTurn);
     while (true) {
