@@ -27,8 +27,8 @@ Game::Game() {
 
     playerTurn = false;
 
-     board.printRed();
-    //board.printBoard();
+    board.printRed();
+    // board.printBoard();
     printRemaining(piecesRemainingR);
 
     check1 = true;
@@ -43,19 +43,19 @@ Game::Game() {
 }
 
 void Game::printRemaining(std::vector<int> piecesRemaining) {
-cout << endl << "\tLeft to place: " << endl;
-    cout << "Bomb: " << piecesRemaining.at(0)
-         << "\t\t\tMarshall: " << piecesRemaining.at(1)
-         << "\t\tGeneral: " << piecesRemaining.at(2) << endl;
-    cout << "Colonel: " << piecesRemaining.at(3)
-         << "\t\tMajor: " << piecesRemaining.at(4)
-         << "\t\tCaptain: " << piecesRemaining.at(5) << endl;
-    cout << "Lieutenant: " << piecesRemaining.at(6)
-         << "\t\tSergeant: " << piecesRemaining.at(7)
-         << "\t\tMiner: " << piecesRemaining.at(8) << endl;
-    cout << "Scout: " << piecesRemaining.at(9)
-         << "\t\tSpy: " << piecesRemaining.at(10)
-         << "\t\t\tFlag: " << piecesRemaining.at(11) << endl;
+  cout << endl << "\tLeft to place: " << endl;
+  cout << "Bomb: " << piecesRemaining.at(0)
+       << "\t\t\tMarshall: " << piecesRemaining.at(1)
+       << "\t\tGeneral: " << piecesRemaining.at(2) << endl;
+  cout << "Colonel: " << piecesRemaining.at(3)
+       << "\t\tMajor: " << piecesRemaining.at(4)
+       << "\t\tCaptain: " << piecesRemaining.at(5) << endl;
+  cout << "Lieutenant: " << piecesRemaining.at(6)
+       << "\t\tSergeant: " << piecesRemaining.at(7)
+       << "\t\tMiner: " << piecesRemaining.at(8) << endl;
+  cout << "Scout: " << piecesRemaining.at(9)
+       << "\t\tSpy: " << piecesRemaining.at(10)
+       << "\t\t\tFlag: " << piecesRemaining.at(11) << endl;
 }
 
 bool Game::choosePiece(vector<int> &piecesRemaining) {
@@ -64,15 +64,15 @@ bool Game::choosePiece(vector<int> &piecesRemaining) {
   bool properInput = false;
   do {
     cin >> tempName;
-        if(cin.fail()) {
-            cin.clear();
-            cin.ignore(1000, '\n');
-            properInput = true;
-            cout << "Entry not a string. Please try again: ";
-        } else {
-            properInput = false;
-        }
-  } while(properInput);
+    if (cin.fail()) {
+      cin.clear();
+      cin.ignore(1000, '\n');
+      properInput = true;
+      cout << "Entry not a string. Please try again: ";
+    } else {
+      properInput = false;
+    }
+  } while (properInput);
 
   Piece *piece;
   if (tempName == "Bomb" && piecesRemaining.at(0) > 0) {
@@ -160,32 +160,32 @@ void Game::selectLocation(Piece *piece) {
   int x, y;
   bool improperEntry = true;
   bool invalidPlacement = true;
-  while(invalidPlacement) {
+  while (invalidPlacement) {
     cout << "Select the location you would like to place your piece: " << endl;
     do {
-    cout << "x: ";
-    cin >> x;
-        if(cin.fail()) {
-            cin.clear();
-            cin.ignore(1000, '\n');
-            improperEntry = true;
-            cout << "Location not a number. Please try again: ";
-        } else {
-            improperEntry = false;
-        }
-    } while(improperEntry);
+      cout << "x: ";
+      cin >> x;
+      if (cin.fail()) {
+        cin.clear();
+        cin.ignore(1000, '\n');
+        improperEntry = true;
+        cout << "Location not a number. Please try again: ";
+      } else {
+        improperEntry = false;
+      }
+    } while (improperEntry);
     do {
-    cout << "y: ";
-    cin >> y;
-            if(cin.fail()) {
-            cin.clear();
-            cin.ignore(1000, '\n');
-            improperEntry = true;
-            cout << "Location not a number. Please try again: ";
-        } else {
-            improperEntry = false;
-        }
-    } while(improperEntry);
+      cout << "y: ";
+      cin >> y;
+      if (cin.fail()) {
+        cin.clear();
+        cin.ignore(1000, '\n');
+        improperEntry = true;
+        cout << "Location not a number. Please try again: ";
+      } else {
+        improperEntry = false;
+      }
+    } while (improperEntry);
     x--;
     y--;
     if (board.validatePlacement(x, y, playerTurn)) {
@@ -217,37 +217,44 @@ void Game::run() {
         board.printRed();
         playerTurn = true;
     }*/
-do {
-    board.printBoard();
-    cout << "Select the piece you would like to move: " << endl;
-    cout << "x: ";
-    cin >> xCoord;
-    cout << "y: ";
-    cin >> yCoord;
+    do {
+      if (playerTurn == true) {
+        board.printBlue();
+        playerTurn = false;
+      } else {
+        board.printRed();
+        playerTurn = true;
+      }
+      cout << "Select the piece you would like to move: " << endl;
+      cout << "x: ";
+      cin >> xCoord;
+      cout << "y: ";
+      cin >> yCoord;
 
-    // add selection validation
+      // add selection validation
 
-    // board.validateSelection(xCoord, yCoord, playerTurn);
+      // board.validateSelection(xCoord, yCoord, playerTurn);
 
-    piecePtr = board.selectPiece(xCoord, yCoord, playerTurn);
-} while (!board.validateSelection(xCoord, yCoord, playerTurn));
+      piecePtr = board.selectPiece(xCoord, yCoord, playerTurn);
+    } while (!board.validateSelection(xCoord, yCoord, playerTurn));
     // board.validateMovement(piecePtr, xMove, yMove, piecePtr->getMovement(),
     // playerTurn);
-while (true) {
-	if (board.move(piecePtr)) {
-		break;
-	}
-}
-    
+    while (true) {
+      if (board.move(piecePtr)) {
+        break;
+      }
+    }
 
     if (playerTurn == true) {
-        playerTurn = false;
+      playerTurn = false;
     } else {
-        playerTurn = true;
+      playerTurn = true;
     }
     cout << "\033[2J\033[1;1H";
 
   } while (continueGame);
 }
 
-bool Game::getTurn() { return playerTurn; }// still don't understand why we need this. -CM
+bool Game::getTurn() {
+  return playerTurn;
+} // still don't understand why we need this. -CM
