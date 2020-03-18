@@ -267,7 +267,7 @@ bool Board::move(Piece *piece) {
       else if(Pieces[piece->getY()][piece->getX() - distance]->getName() == "Empty") {
           Pieces[piece->getY()][piece->getX()] = new Nopiece;
           cout << "You have moved right.\n";
-          piece->setX(piece->getX() + distance);
+          piece->setX(piece->getX() - distance);
 		  piece->setY(piece->getY());
           Pieces[piece->getY()][piece->getX()] = piece;
           return true;
@@ -280,7 +280,7 @@ bool Board::move(Piece *piece) {
 	  else  {
 		  Pieces[piece->getY()][piece->getX()] = new Nopiece;
 		  cout << "Your " << piece->getName() << " destroyed the enemy " << Pieces[piece->getY() - distance][piece->getX()]->getName() << "." << endl;
-		  piece->setX(piece->getX() + distance);
+		  piece->setX(piece->getX() - distance);
 		  piece->setY(piece->getY());
 		  Pieces[piece->getY()][piece->getX()] = piece;
 		  return true;
@@ -293,8 +293,8 @@ bool Board::move(Piece *piece) {
 	  }
       else if(Pieces[piece->getY()][piece->getX() + distance]->getName() == "Empty") {
           Pieces[piece->getY()][piece->getX()] = new Nopiece;
-          cout << "You have moved right.\n";
-          piece->setX(piece->getX() - distance);
+          cout << "You have moved left.\n";
+          piece->setX(piece->getX() + distance);
 		  piece->setY(piece->getY());
           Pieces[piece->getY()][piece->getX()] = piece;
           return true;
@@ -307,7 +307,7 @@ bool Board::move(Piece *piece) {
 	  else {
 		  Pieces[piece->getY()][piece->getX()] = new Nopiece;
 		  cout << "Your " << piece->getName() << " destroyed the enemy " << Pieces[piece->getY() - distance][piece->getX()]->getName() << "." << endl;
-		  piece->setX(piece->getX() - distance);
+		  piece->setX(piece->getX() + distance);
 		  piece->setY(piece->getY());
 		  Pieces[piece->getY()][piece->getX()] = piece;
 		  return true;
