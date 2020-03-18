@@ -197,6 +197,7 @@ bool Board::move(Piece *piece) {
 		  }
 	  } else {
           distance = piece->getMovement();
+          break;
       }
   }
 
