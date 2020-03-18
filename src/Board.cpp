@@ -279,4 +279,5 @@ bool Board::move(Piece *piece) {
 
 void Board::place(Piece *piece) {
   Pieces[piece->getY()][piece->getX()] = piece;
+  cout << "I ran place" << endl;
 }
