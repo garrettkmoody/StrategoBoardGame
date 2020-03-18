@@ -218,30 +218,52 @@ void Game::run() {
         playerTurn = true;
     }*/
     do {
-    
+
+      bool improperEntry = true;
+
       if (playerTurn == true) {
         board.printBlue();
       } else {
         board.printRed();
       }
       cout << "Select the piece you would like to move: " << endl;
-      cout << "x: ";
-      cin >> xCoord;
-      cout << "y: ";
-      cin >> yCoord;
+      do {
+        cout << "x: ";
+        cin >> xCoord;
+        if (cin.fail()) {
+          cin.clear();
+          cin.ignore(1000, '\n');
+          improperEntry = true;
+          cout << "Location not a number. Please try again: ";
+        } else {
+          improperEntry = false;
+        }
+      } while (improperEntry);
+      do {
+        cout << "y: ";
+        cin >> yCoord;
+        if (cin.fail()) {
+          cin.clear();
+          cin.ignore(1000, '\n');
+          improperEntry = true;
+          cout << "Location not a number. Please try again: ";
+        } else {
+          improperEntry = false;
+        }
+      } while (improperEntry);
 
       // add selection validation
-    xCoord--;
-    yCoord--;
+      xCoord--;
+      yCoord--;
       // board.validateSelection(xCoord, yCoord, playerTurn);
-    try{
+      try {
         board.validateSelection(xCoord, yCoord, playerTurn);
         piecePtr = board.selectPiece(xCoord, yCoord, playerTurn);
         runAgain = 0;
-    }catch(runtime_error &except){
+      } catch (runtime_error &except) {
         cout << except.what() << endl;
-    }
-      
+      }
+
     } while (runAgain);
     // board.validateMovement(piecePtr, xMove, yMove, piecePtr->getMovement(),
     // playerTurn);
