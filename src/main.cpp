@@ -15,6 +15,7 @@
  using namespace std;
 #include "Game.h"
  void intro();
+ void finish(bool turn);
 
 int main() {
 
@@ -24,13 +25,7 @@ int main() {
 
     game.run();
 
-    cout << "Congratulations, ";
-    if ( game.getTurn() == true ) {
-        cout << "Player One ";
-    } else {
-        cout << "Player Two ";
-    }
-    cout << "has won the game!" << endl;
+    finish(game.getTurn());
 
     
 
@@ -45,4 +40,15 @@ void intro() {
     cout << "    Press Any Key To Continue     " << endl;
     cin.get();
 
+}
+
+void finish(bool turn) {
+
+    cout << "Congratulations, ";
+    if ( turn == true ) {
+        cout << "Player One ";
+    } else {
+        cout << "Player Two ";
+    }
+    cout << "has won the game!" << endl;
 }

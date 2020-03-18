@@ -93,15 +93,18 @@ bool Board::validateMovement(Piece *piece, int x, int y, bool playerTurn) {
 
 bool Board::validateSelection(int x, int y, bool playerTurn) {
   if (x < 0 || y < 0 || x > 9 || y > 9) {
+    throw runtime_error("This location isn't on the board.");
     cout << "This location isn't on the board." << endl;
     return false;
   } else if (Pieces[y][x]->getMovement() == 0 ||
              playerTurn != Pieces[y][x]->getSide()) {
+    throw runtime_error("This piece cannot be moved.");
     cout << "This piece cannot be moved." << endl;
     return false;
   } else {
     return true;
   }
+  
 }
 
 bool Board::validatePlacement(int x, int y, bool playerTurn) {
@@ -143,16 +146,19 @@ bool Board::resolveAttack(Piece* piece, int x, int y) {
 
 Piece *Board::selectPiece(int x, int y, bool playerTurn) {
   Piece *piece;
-  do {
-    if (validateSelection(x, y, playerTurn) &&
-        Pieces[y][x]->getSide() == playerTurn) {
+  
+    try {
+      if(Pieces[y][x]->getSide() == playerTurn) {
+          return 0;
+      }
+      validateSelection(x, y, playerTurn);   
       piece = Pieces[y][x];
       piece->setY(y);
-      piece->setX(x);
-    } else {
-      cout << "You cannot select this piece." << endl;
+      piece->setX(x); }
+     catch(runtime_error & except) {
+      cout << except.what() << endl;
     }
-  } while (!validateSelection(x, y, piece->getMovement()));
+  
   return piece;
 }
 
