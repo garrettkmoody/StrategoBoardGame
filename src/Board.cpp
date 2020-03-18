@@ -195,7 +195,9 @@ bool Board::move(Piece *piece) {
 		  else {
 			  cout << "You can't move that far." << endl;
 		  }
-	  }
+	  } else {
+          distance = piece->getMovement();
+      }
   }
 
   switch (direction) {
