@@ -75,16 +75,16 @@ void Board::printRed() {
 // note that validateMovement needs to consider the movement abilities of the
 // piece in question. We need to have seperate else ifs for x and y restrictions
 // else it will return junk when we call the board to check if the end location
-// is a river or an ally.
+// is a river or an ally.    
 
 bool Board::validateMovement(Piece *piece, int x, int y, bool playerTurn) {
   if (x < 0 || x > 9 || y < 0 || y > 9) {
-    return true;
-  } else if (Pieces[y][x]->getName() == "River" ||
-	  (playerTurn == Pieces[y][x]->getSide() && Pieces[y][x]->getName() != "Empty")) {
-    return true;
-  } else {
     return false;
+  } else if (Pieces[y][x]->getName() == "River" ||
+	  (Pieces[y][x]->getName() != "Empty" && playerTurn == Pieces[y][x]->getSide())) {
+    return false;
+  } else {
+    return true;
   }
 }
 
@@ -203,7 +203,7 @@ bool Board::move(Piece *piece) {
 
   switch (direction) {
   case 'w': {
-	  if (validateMovement(piece, piece->getX(), piece->getY() + distance, piece->getSide())) {
+	  if (!validateMovement(piece, piece->getX(), piece->getY() + distance, piece->getSide())) {
 		  cout << "Invalid move" << endl;
 		  return false;
 	  }
@@ -222,7 +222,7 @@ bool Board::move(Piece *piece) {
 	  }
   }; break;
   case 's': {
-	  if (validateMovement(piece, piece->getX(), piece->getY() - distance, piece->getSide())) {
+	  if (!validateMovement(piece, piece->getX(), piece->getY() - distance, piece->getSide())) {
 		  cout << "Invalid move" << endl;
 		  return false;
 	  }
@@ -241,7 +241,7 @@ bool Board::move(Piece *piece) {
 	  }
   }; break;
   case 'd': {
-	  if (validateMovement(piece, piece->getX() + distance, piece->getY(), piece->getSide())) {
+	  if (!validateMovement(piece, piece->getX() + distance, piece->getY(), piece->getSide())) {
 		  cout << "Invalid move" << endl;
 		  return false;
 	  }
@@ -260,7 +260,7 @@ bool Board::move(Piece *piece) {
 	  }
   }; break;
   case 'a': {
-	  if (validateMovement(piece, piece->getX() - distance, piece->getY(), piece->getSide())) {
+	  if (!validateMovement(piece, piece->getX() - distance, piece->getY(), piece->getSide())) {
 		  cout << "Invalid move" << endl;
    		  return false;
 	  }
