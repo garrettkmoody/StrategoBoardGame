@@ -248,7 +248,7 @@ bool Board::move(Piece *piece) {
 		  cout << "Invalid move" << endl;
 		  return false;
 	  }
-	  else if (resolveAttack(piece, piece->getX() + distance, piece->getY())) {
+	  else if (resolveAttack(piece, piece->getX() - distance, piece->getY())) {
 		  cout << "Your " << piece->getName() << " threw himself valliantly against the enemy " << Pieces[piece->getY()][piece->getX() + distance]->getName() << "." << endl;
 		  Pieces[piece->getY()][piece->getX()] = new Nopiece;
 		  return true;
@@ -267,7 +267,7 @@ bool Board::move(Piece *piece) {
 		  cout << "Invalid move" << endl;
    		  return false;
 	  }
-	  else if (resolveAttack(piece, piece->getX() - distance, piece->getY())) {
+	  else if (resolveAttack(piece, piece->getX() + distance, piece->getY())) {
 		  cout << "Your " << piece->getName() << " threw himself valliantly against the enemy " << Pieces[piece->getY()][piece->getX() - distance]->getName() << "." << endl;
 		  Pieces[piece->getY()][piece->getX()] = new Nopiece;
 		  return true;

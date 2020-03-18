@@ -278,6 +278,9 @@ void Game::run() {
     } else {
       playerTurn = true;
     }
+    char continueturn;
+    cin >> continueturn;
+    
     cout << "\033[2J\033[1;1H";
 
   } while (continueGame);
